@@ -1,12 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import { indigo, blue } from "@material-ui/core/colors";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: indigo[200]
+    },
+    secondary: {
+      main: blue[700]
+    },
+    type: "dark"
+  }
+});
+
+// MUIThemeProvider does not need to be the top level wrapper. Add redux and react router stuff however you would like.
+
+ReactDOM.render(
+  <MuiThemeProvider theme={theme}>
+    <App />
+  </MuiThemeProvider>,
+  document.getElementById("root")
+);
