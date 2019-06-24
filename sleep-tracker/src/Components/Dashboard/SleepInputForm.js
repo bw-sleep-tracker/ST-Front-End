@@ -144,7 +144,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.morningEmojiToggle(e, "Morning")}
-                variant={this.state.morning === 1 && "outlined"}
+                variant={this.state.morning === 1 ? "contained" : "text"}
               >
                 😀
               </Button>
@@ -152,7 +152,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.morningEmojiToggle(e, "Morning")}
-                variant={this.state.morning === 2 && "outlined"}
+                variant={this.state.morning === 2 ? "contained" : "text"}
               >
                 😐
               </Button>
@@ -160,7 +160,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.morningEmojiToggle(e, "Morning")}
-                variant={this.state.morning === 3 && "outlined"}
+                variant={this.state.morning === 3 ? "contained" : "text"}
               >
                 😴
               </Button>
@@ -171,7 +171,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.morningEmojiToggle(e, "Daytime")}
-                variant={this.state.day === 1 && "outlined"}
+                variant={this.state.day === 1 ? "contained" : "text"}
               >
                 😀
               </Button>
@@ -179,7 +179,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.morningEmojiToggle(e, "Daytime")}
-                variant={this.state.day === 2 && "outlined"}
+                variant={this.state.day === 2 ? "contained" : "text"}
               >
                 😐
               </Button>
@@ -187,7 +187,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.morningEmojiToggle(e, "Daytime")}
-                variant={this.state.day === 3 && "outlined"}
+                variant={this.state.day === 3 ? "contained" : "text"}
               >
                 😴
               </Button>
