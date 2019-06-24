@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import Loader from "react-loader-spinner";
 
 import { Card, TextField, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -149,4 +151,11 @@ class CreateUserForm extends Component {
   }
 }
 
-export default withStyles(styles)(CreateUserForm);
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(withStyles(styles)(CreateUserForm));
