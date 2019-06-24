@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import { Card, TextField, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -99,9 +101,10 @@ class CreateUserForm extends Component {
             style={{ padding: 10, textAlign: "center" }}
           >
             Already have a username? <br />{" "}
-            <a href="#" style={{ color: "white" }}>
-              Login Here.
-            </a>
+            {/* <a href="#" style={{ color: "white" }}> */}
+            <Link to="/">Login Here.</Link>
+            {/* Links need to be restyled */}
+            {/* </a> */}
           </Typography>
         </form>
       </Card>
