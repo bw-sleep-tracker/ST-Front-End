@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import { Card, TextField, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -35,7 +37,10 @@ class CreateUserForm extends Component {
   state = {
     username: "",
     password: "",
-    password2: ""
+    password2: "",
+    email: "",
+    first_name: "",
+    last_name: ""
   };
 
   handleChange = event => {
@@ -49,7 +54,14 @@ class CreateUserForm extends Component {
   };
 
   render() {
-    const { username, password } = this.state;
+    const {
+      username,
+      password,
+      password2,
+      email,
+      first_name,
+      last_name
+    } = this.state;
     const { classes } = this.props;
     return (
       <Card className={classes.cardContainer} raised>
@@ -59,10 +71,37 @@ class CreateUserForm extends Component {
           </Typography>
           <TextField
             id="standard-name"
+            label="First Name"
+            name="first_name"
+            className={classes.textField}
+            value={first_name}
+            onChange={this.handleChange}
+            margin="normal"
+          />
+          <TextField
+            id="standard-name"
+            label="Last Name"
+            name="last_name"
+            className={classes.textField}
+            value={last_name}
+            onChange={this.handleChange}
+            margin="normal"
+          />
+          <TextField
+            id="standard-name"
             label="Username"
             name="username"
             className={classes.textField}
             value={username}
+            onChange={this.handleChange}
+            margin="normal"
+          />
+          <TextField
+            id="standard-name"
+            label="Email"
+            name="email"
+            className={classes.textField}
+            value={email}
             onChange={this.handleChange}
             margin="normal"
           />
@@ -82,7 +121,7 @@ class CreateUserForm extends Component {
             type="password"
             name="password2"
             className={classes.textField}
-            value={password}
+            value={password2}
             onChange={this.handleChange}
             margin="normal"
           />
@@ -99,9 +138,10 @@ class CreateUserForm extends Component {
             style={{ padding: 10, textAlign: "center" }}
           >
             Already have a username? <br />{" "}
-            <a href="#" style={{ color: "white" }}>
-              Login Here.
-            </a>
+            {/* <a href="#" style={{ color: "white" }}> */}
+            <Link to="/">Login Here.</Link>
+            {/* Links need to be restyled */}
+            {/* </a> */}
           </Typography>
         </form>
       </Card>
