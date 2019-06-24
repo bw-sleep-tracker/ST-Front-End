@@ -14,7 +14,7 @@ function App() {
       style={{
         minHeight: "100vh",
         height: "100%",
-        backgroundColor: "lightGrey",
+        backgroundColor: "darkGrey",
         paddingBottom: 100
       }}
     >

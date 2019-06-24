@@ -30,11 +30,65 @@ const styles = theme => ({
 
 class SleepInputForm extends Component {
   state = {
-    date: ""
+    date: "",
+    startTime: "",
+    endTime: "",
+    morning: null,
+    day: null
+  };
+
+  getDate = e => {
+    this.setState({ date: e.target.value });
+  };
+
+  getStartTime = e => {
+    this.setState({ startTime: e.target.value });
+  };
+
+  getEndTime = e => {
+    this.setState({ endTime: e.target.value });
+  };
+
+  morningEmojiToggle = (e, data) => {
+    console.log(e.target.textContent);
+    let content = e.target.textContent;
+
+    if (data === "Morning") {
+      switch (content) {
+        case "😀": {
+          return this.setState({ morning: 1 });
+        }
+        case "😐": {
+          return this.setState({ morning: 2 });
+        }
+        case "😴": {
+          return this.setState({ morning: 3 });
+        }
+        default: {
+          return this.setState({ morning: null });
+        }
+      }
+    } else if (data === "Daytime") {
+      switch (content) {
+        case "😀": {
+          return this.setState({ day: 1 });
+        }
+        case "😐": {
+          return this.setState({ day: 2 });
+        }
+        case "😴": {
+          return this.setState({ day: 3 });
+        }
+        default: {
+          return this.setState({ day: null });
+        }
+      }
+    }
   };
 
   render() {
     const { classes } = this.props;
+    console.log(this.state);
     return (
       <Dialog open={this.props.status} onClose={this.props.toggle}>
         <DialogTitle>Submit Sleep</DialogTitle>
@@ -44,6 +98,7 @@ class SleepInputForm extends Component {
           </DialogContentText>
           <form className={classes.form}>
             <TextField
+              value={this.state.date}
               id="date"
               label="Date"
               type="date"
@@ -51,53 +106,89 @@ class SleepInputForm extends Component {
               InputLabelProps={{
                 shrink: true
               }}
+              onChange={this.getDate}
             />
-            <TextField
-              id="time"
-              label="Sleep Start"
-              type="time"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true
-              }}
-              inputProps={{
-                step: 300 // 5 min
-              }}
-            />
-            <TextField
-              id="time"
-              label="Sleep End"
-              type="time"
-              className={classes.textField}
-              InputLabelProps={{
-                shrink: true
-              }}
-              inputProps={{
-                step: 300 // 5 min
-              }}
-            />
-
+            <div>
+              <TextField
+                value={this.state.startTime}
+                id="time"
+                label="Sleep Start"
+                type="time"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                inputProps={{
+                  step: 300 // 5 min
+                }}
+                onChange={this.getStartTime}
+              />
+              <TextField
+                value={this.state.endTime}
+                id="time"
+                label="Sleep End"
+                type="time"
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                inputProps={{
+                  step: 300 // 5 min
+                }}
+                onChange={this.getEndTime}
+              />
+            </div>
             <DialogContentText style={{ textAlign: "right" }}>
               Morning Feeling:{" "}
-              <Button size="small" className={classes.emoji}>
+              <Button
+                size="small"
+                className={classes.emoji}
+                onClick={e => this.morningEmojiToggle(e, "Morning")}
+                variant={this.state.morning === 1 && "outlined"}
+              >
                 😀
               </Button>
-              <Button size="small" className={classes.emoji}>
+              <Button
+                size="small"
+                className={classes.emoji}
+                onClick={e => this.morningEmojiToggle(e, "Morning")}
+                variant={this.state.morning === 2 && "outlined"}
+              >
                 😐
               </Button>
-              <Button size="small" className={classes.emoji}>
+              <Button
+                size="small"
+                className={classes.emoji}
+                onClick={e => this.morningEmojiToggle(e, "Morning")}
+                variant={this.state.morning === 3 && "outlined"}
+              >
                 😴
               </Button>
             </DialogContentText>
             <DialogContentText style={{ textAlign: "right" }}>
               Day Feeling:{" "}
-              <Button size="small" className={classes.emoji}>
+              <Button
+                size="small"
+                className={classes.emoji}
+                onClick={e => this.morningEmojiToggle(e, "Daytime")}
+                variant={this.state.day === 1 && "outlined"}
+              >
                 😀
               </Button>
-              <Button size="small" className={classes.emoji}>
+              <Button
+                size="small"
+                className={classes.emoji}
+                onClick={e => this.morningEmojiToggle(e, "Daytime")}
+                variant={this.state.day === 2 && "outlined"}
+              >
                 😐
               </Button>
-              <Button size="small" className={classes.emoji}>
+              <Button
+                size="small"
+                className={classes.emoji}
+                onClick={e => this.morningEmojiToggle(e, "Daytime")}
+                variant={this.state.day === 3 && "outlined"}
+              >
                 😴
               </Button>
             </DialogContentText>
