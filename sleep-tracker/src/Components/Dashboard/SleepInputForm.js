@@ -19,7 +19,8 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200
+    width: 150,
+    marginTop: 25
   },
   emoji: {
     margin: theme.spacing(1),
@@ -37,31 +38,45 @@ class SleepInputForm extends Component {
     return (
       <Dialog open={this.props.status} onClose={this.props.toggle}>
         <DialogTitle>Submit Sleep</DialogTitle>
-        <DialogContent>
+        <DialogContent style={{ maxWidth: 400 }}>
           <DialogContentText>
             Complete the form below to submit your sleep cycle.
           </DialogContentText>
           <form className={classes.form}>
-            <div>
-              <TextField
-                id="datetime-local"
-                label="Sleep Start Time"
-                type="datetime-local"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true
-                }}
-              />
-              <TextField
-                id="datetime-local"
-                label="Sleep End Time"
-                type="datetime-local"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true
-                }}
-              />
-            </div>
+            <TextField
+              id="date"
+              label="Date"
+              type="date"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+            <TextField
+              id="time"
+              label="Sleep Start"
+              type="time"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true
+              }}
+              inputProps={{
+                step: 300 // 5 min
+              }}
+            />
+            <TextField
+              id="time"
+              label="Sleep End"
+              type="time"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true
+              }}
+              inputProps={{
+                step: 300 // 5 min
+              }}
+            />
+
             <DialogContentText style={{ textAlign: "right" }}>
               Morning Feeling:{" "}
               <Button size="small" className={classes.emoji}>
