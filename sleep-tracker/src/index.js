@@ -1,16 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
+
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import logger from "redux-logger";
 
 import "./index.css";
 import App from "./App";
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import { indigo, blue } from "@material-ui/core/colors";
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+import { rootReducer } from "./store/reducers";
 
 const theme = createMuiTheme({
   palette: {
@@ -24,11 +26,19 @@ const theme = createMuiTheme({
   }
 });
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(rootReducer, composeEnhancers(thunk, logger));
+
 // MUIThemeProvider does not need to be the top level wrapper. Add redux and react router stuff however you would like.
 
 ReactDOM.render(
-  <MuiThemeProvider theme={theme}>
-    <App />
-  </MuiThemeProvider>,
+  <Provider store={store}>
+    <Router>
+      <MuiThemeProvider theme={theme}>
+        <App />
+      </MuiThemeProvider>
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
