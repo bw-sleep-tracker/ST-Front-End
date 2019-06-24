@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, withRouter } from "react-router-dom";
 
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
@@ -33,11 +33,13 @@ const store = createStore(
   composeEnhancers(applyMiddleware(thunk, logger))
 );
 
+const AppWithRouter = withRouter(App);
+
 ReactDOM.render(
   <Provider store={store}>
     <Router>
       <MuiThemeProvider theme={theme}>
-        <App />
+        <AppWithRouter />
       </MuiThemeProvider>
     </Router>
   </Provider>,

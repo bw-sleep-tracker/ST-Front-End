@@ -56,7 +56,9 @@ class CreateUserForm extends Component {
     e.preventDefault();
     console.log("I AM THE LOGIN BUTTON");
     console.log(this.state);
-    this.props.registerUser(this.state);
+    this.props.registerUser(this.state).then(() => {
+      this.props.history.push("/");
+    });
   };
 
   render() {
