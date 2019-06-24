@@ -1,7 +1,13 @@
 import React from "react";
 
+import WeeklyChart from "./Charts/WeeklyChart";
+
 const Weekly = () => {
-  return <div>WEEKLY</div>;
+  return (
+    <div>
+      <WeeklyChart />
+    </div>
+  );
 };
 
 export default Weekly;
