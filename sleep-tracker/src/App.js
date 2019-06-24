@@ -27,6 +27,10 @@ function App() {
         path="/dashboard"
         render={props => <DashboardContainer {...props} />}
       />
+      <Route
+        path="/dashboardDEV"
+        render={props => <DashboardContainer {...props} />}
+      />
     </div>
   );
 }

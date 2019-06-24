@@ -4,6 +4,9 @@ import { Toolbar, Fab, Paper, Tabs, Tab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
 import SleepInputForm from "./SleepInputForm";
+import Daily from "./Daily";
+import Weekly from "./Weekly";
+import Monthly from "./Monthly";
 
 const styles = theme => ({
   tabsRoot: {
@@ -37,6 +40,16 @@ class DashboardContainer extends Component {
     const { classes } = this.props;
     const { tabValue } = this.state;
 
+    let content;
+
+    if (this.state.tabValue === 0) {
+      content = <Daily />;
+    } else if (this.state.tabValue === 1) {
+      content = <Weekly />;
+    } else if (this.state.tabValue === 2) {
+      content = <Monthly />;
+    }
+
     return (
       <div>
         <Paper className={classes.tabsRoot}>
@@ -63,6 +76,7 @@ class DashboardContainer extends Component {
             <AddIcon />
           </Fab>
         </Toolbar>
+        {content}
         <SleepInputForm
           status={this.state.sleepInputStatus}
           toggle={this.sleepInputToggle}
