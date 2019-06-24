@@ -3,6 +3,8 @@ import { withStyles } from "@material-ui/core/styles";
 import { Toolbar, Fab, Paper, Tabs, Tab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
+import SleepInputForm from "./SleepInputForm";
+
 const styles = theme => ({
   tabsRoot: {
     flexGrow: 1
@@ -19,15 +21,16 @@ const styles = theme => ({
 
 class DashboardContainer extends Component {
   state = {
-    tabValue: 0
-  };
-
-  plusButton = () => {
-    console.log("I AM THE PLUS BUTTON");
+    tabValue: 0,
+    sleepInputStatus: false
   };
 
   changeTab = (event, newValue) => {
     this.setState({ tabValue: newValue });
+  };
+
+  sleepInputToggle = () => {
+    this.setState({ sleepInputStatus: !this.state.sleepInputStatus });
   };
 
   render() {
@@ -55,11 +58,15 @@ class DashboardContainer extends Component {
             aria-label="Add"
             size="small"
             className={classes.fab}
-            onClick={this.plusButton}
+            onClick={this.sleepInputToggle}
           >
             <AddIcon />
           </Fab>
         </Toolbar>
+        <SleepInputForm
+          status={this.state.sleepInputStatus}
+          toggle={this.sleepInputToggle}
+        />
       </div>
     );
   }
