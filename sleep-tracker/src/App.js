@@ -16,14 +16,16 @@ const App = () => {
       style={{
         minHeight: "100vh",
         height: "100%",
-        backgroundColor: "lightGrey",
+        backgroundColor: "darkGrey",
         paddingBottom: 100
       }}
     >
       <Header />
       <Route exact path="/" render={props => <LoginForm {...props} />} />
       <Route path="/create" render={props => <CreateUserForm {...props} />} />
+
       <PrivateRoute path="/dashboard" component={DashboardContainer} />
+
     </div>
   );
 };
