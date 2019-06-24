@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import { Card, TextField, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+
+import { login } from "../store/actions";
 
 const styles = theme => ({
   root: {
@@ -46,9 +49,11 @@ class LoginForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  loginSubmit = () => {
+  loginSubmit = e => {
+    e.preventDefault();
     console.log("I AM THE LOGIN BUTTON");
     console.log(this.state);
+    this.props.login(this.state);
   };
 
   render() {
@@ -56,7 +61,12 @@ class LoginForm extends Component {
     const { classes } = this.props;
     return (
       <Card className={classes.cardContainer} raised>
-        <form className={classes.container} noValidate autoComplete="off">
+        <form
+          className={classes.container}
+          noValidate
+          autoComplete="off"
+          onSubmit={this.loginSubmit}
+        >
           <Typography variant="h6" color="inherit" className={classes.root}>
             Login
           </Typography>
@@ -83,7 +93,7 @@ class LoginForm extends Component {
             variant="contained"
             color="primary"
             className={classes.button}
-            onClick={this.loginSubmit}
+            type="submit"
           >
             LOGIN
           </Button>
@@ -103,4 +113,14 @@ class LoginForm extends Component {
   }
 }
 
-export default withStyles(styles)(LoginForm);
+const mapStateToProps = state => {
+  return {
+    logginIn: state.logginIn,
+    error: state.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(withStyles(styles)(LoginForm));

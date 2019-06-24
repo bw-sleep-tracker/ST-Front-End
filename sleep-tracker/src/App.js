@@ -9,7 +9,7 @@ import PrivateRoute from "./util/PrivateRoute";
 
 // The plus button (add sleep) is built out inside the Header component. My thoughts are to only show that when the user is logged in. I think the user should be shown the login page by default and everything else is protected.
 
-function App() {
+const App = () => {
   return (
     <div
       className="App"
@@ -29,6 +29,6 @@ function App() {
       />
     </div>
   );
-}
+};
 
 export default App;
