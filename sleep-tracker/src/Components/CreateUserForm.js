@@ -154,7 +154,10 @@ class CreateUserForm extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    registering: state.registering,
+    error: state.error
+  };
 };
 
 export default connect(
