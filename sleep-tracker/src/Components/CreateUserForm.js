@@ -6,6 +6,8 @@ import Loader from "react-loader-spinner";
 import { Card, TextField, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
+import { registerUser } from "../store/actions";
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -39,7 +41,7 @@ class CreateUserForm extends Component {
   state = {
     username: "",
     password: "",
-    password2: "",
+    // password2: "",
     email: "",
     first_name: "",
     last_name: ""
@@ -50,24 +52,24 @@ class CreateUserForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  loginSubmit = () => {
+  loginSubmit = e => {
+    e.preventDefault();
     console.log("I AM THE LOGIN BUTTON");
     console.log(this.state);
+    this.props.registerUser(this.state);
   };
 
   render() {
-    const {
-      username,
-      password,
-      password2,
-      email,
-      first_name,
-      last_name
-    } = this.state;
+    const { username, password, email, first_name, last_name } = this.state;
     const { classes } = this.props;
     return (
       <Card className={classes.cardContainer} raised>
-        <form className={classes.container} noValidate autoComplete="off">
+        <form
+          className={classes.container}
+          noValidate
+          autoComplete="off"
+          onSubmit={this.loginSubmit}
+        >
           <Typography variant="h6" color="inherit" className={classes.root}>
             Create User
           </Typography>
@@ -117,7 +119,7 @@ class CreateUserForm extends Component {
             onChange={this.handleChange}
             margin="normal"
           />
-          <TextField
+          {/* <TextField
             id="standard-name"
             label="Confirm Password"
             type="password"
@@ -126,12 +128,12 @@ class CreateUserForm extends Component {
             value={password2}
             onChange={this.handleChange}
             margin="normal"
-          />
+          /> */}
           <Button
             variant="contained"
             color="primary"
             className={classes.button}
-            onClick={this.loginSubmit}
+            type="submit"
           >
             CREATE USER
           </Button>
@@ -157,5 +159,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { registerUser }
 )(withStyles(styles)(CreateUserForm));
