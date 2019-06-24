@@ -23,10 +23,7 @@ const App = () => {
       <Header />
       <Route exact path="/" render={props => <LoginForm {...props} />} />
       <Route path="/create" render={props => <CreateUserForm {...props} />} />
-      <PrivateRoute
-        path="/dashboard"
-        render={props => <DashboardContainer {...props} />}
-      />
+      <PrivateRoute path="/dashboard" component={DashboardContainer} />
     </div>
   );
 };
