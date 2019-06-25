@@ -922,10 +922,17 @@
   resolved "https://registry.yarnpkg.com/@date-io/core/-/core-1.3.7.tgz#c65d2979ee7696c0551d8f24df618b21b83cde4a"
   integrity sha512-oHFBOjQskqrFngyDnJPOM1o4FVpKPyNe/aDtkj1HQEfCe7BV3cggwuTll0AOchNdiYY0yJEVyUl8Vi63HZxfBA==
 
-"@date-io/moment@^1.3.7":
+"@date-io/date-fns@^1.3.7":
   version "1.3.7"
-  resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-1.3.7.tgz#e731aa68ab711756d31f43b8f7630b5eb2c01c53"
-  integrity sha512-DpXK6s5f9HOoPPURmqSUN0mwFTTorSXfJyJA42PspJ8ZTJLIeuWUXRkjJKS6hdXUfy3PmshEQTzWbhoOiDwjfw==
+  resolved "https://registry.yarnpkg.com/@date-io/date-fns/-/date-fns-1.3.7.tgz#723034fd1a71721331a951b35a2162f00cc86a3a"
+  integrity sha512-7TqK8xhCrWVY6L3/o/DfTXtJq7HV4KMiiQ6WPsR/mmvWXPrH5AFvjEAPJoFLBYEtX5KqpXbp5lRDwVlH9ZSVQw==
+  dependencies:
+    "@date-io/core" "^1.3.7"
+
+"@date-io/dayjs@^1.3.7":
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/@date-io/dayjs/-/dayjs-1.3.7.tgz#312bbad0aaef0cc0178c3b2fb1abd3f2aa1fe3b8"
+  integrity sha512-kxV1ekE8UySlf1e8KvTrWzs64RNz+4+9lBDHkaabcgDYjz6ub9wOhrg6WpUtOp6sdYolXHBP7LHJCxH9W2LxqQ==
   dependencies:
     "@date-io/core" "^1.3.7"
 
@@ -3248,10 +3255,20 @@ data-urls@^1.0.0, data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
+date-fns@^2.0.0-alpha.37:
+  version "2.0.0-alpha.37"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.37.tgz#c58b3e827da4f860ec8dc123e54019efb4a610e0"
+  integrity sha512-fyIv/h6fkFd1u2NHXni5LPRPoa9FFh3hY67JSjNfa+k/u4EKvfrpGtoTM16Y/BJOqTb4W05UjcmwBna1ElyxDA==
+
 date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
   integrity sha1-6vQ5/U1ISK105cx9vvIAZyueNFs=
+
+dayjs@^1.8.14:
+  version "1.8.14"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.14.tgz#43e4f62830c2c3342c3fcd25934dc9162dbe6f38"
+  integrity sha512-AVhDmRTe541iWirnoeFSSDDGvCT6HWaNQ4z2WmmzXMGZj6ph6ydao2teKq/eUtR43GPJXlYFD+C/SotG1P9wUQ==
 
 debounce@^1.1.0:
   version "1.2.0"

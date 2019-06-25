@@ -13,8 +13,6 @@ import { rootReducer } from "./store/reducers";
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import { indigo, blue } from "@material-ui/core/colors";
-import { MuiPickersUtilsProvider } from "@material-ui/pickers";
-import MomentUtils from "@date-io/moment";
 
 const theme = createMuiTheme({
   palette: {
@@ -41,9 +39,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <MuiThemeProvider theme={theme}>
-        <MuiPickersUtilsProvider utils={MomentUtils}>
-          <AppWithRouter />
-        </MuiPickersUtilsProvider>
+        <AppWithRouter />
       </MuiThemeProvider>
     </Router>
   </Provider>,

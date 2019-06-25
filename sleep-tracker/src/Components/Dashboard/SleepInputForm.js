@@ -1,6 +1,4 @@
-import React, { Component, useState } from "react";
-
-import { TimePicker } from "@material-ui/pickers";
+import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import {
   TextField,
@@ -11,6 +9,8 @@ import {
   DialogTitle,
   Button
 } from "@material-ui/core";
+
+import Clock from "../../util/Clock";
 
 const styles = theme => ({
   form: {
@@ -49,10 +49,6 @@ class SleepInputForm extends Component {
 
   getEndTime = e => {
     this.setState({ endTime: e.target.value });
-  };
-
-  BasicTimePicker = () => {
-    const [selectedDate, handleDateChange] = useState(new Date());
   };
 
   emojiToggle = (e, data) => {
@@ -118,7 +114,8 @@ class SleepInputForm extends Component {
               onChange={this.getDate}
             />
             <div>
-              <TimePicker autoOk label="12 hours" />
+              <Clock label="Sleep Start"/>
+              <Clock label="Sleep End" />
               {/* <TextField
                 value={this.state.startTime}
                 id="time"
@@ -133,7 +130,7 @@ class SleepInputForm extends Component {
                 }}
                 onChange={this.getStartTime}
               /> */}
-              <TextField
+              {/* <TextField
                 value={this.state.endTime}
                 id="time"
                 label="Sleep End"
@@ -146,7 +143,7 @@ class SleepInputForm extends Component {
                   step: 300 // 5 min
                 }}
                 onChange={this.getEndTime}
-              />
+              /> */}
             </div>
             <DialogContentText style={{ textAlign: "right" }}>
               Morning Feeling:{" "}
