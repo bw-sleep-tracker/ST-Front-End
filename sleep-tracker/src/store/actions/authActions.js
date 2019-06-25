@@ -1,40 +1,64 @@
+import axios from "axios";
+import { GET_ERRORS, SET_CURRENT_USER } from "./types";
+import setAuthToken from "../../util/setAuthToken";
+import jwt_decode from "jwt-decode";
 import { axiosWithAuth } from "../../util/axiosWithAuth";
 
-import {
-  REGISTER_PENDING,
-  REGISTER_SUCCESS,
-  REGISTER_FAILURE,
-  LOGIN_PENDING,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE
-} from "./types";
-
-export const registerUser = creds => dispatch => {
-  dispatch({ type: REGISTER_PENDING });
-  axiosWithAuth()
-    .post("https://be-bw-sleep-tracker.herokuapp.com/register", creds)
-    .then(res => {
-      console.log(res);
-      dispatch({ type: REGISTER_SUCCESS, payload: res.data.payload });
-    })
-    .catch(err => {
-      console.log(err);
-      dispatch({ type: REGISTER_FAILURE, payload: "Register user failed!" });
-    });
+// Register User
+export const registerUser = (userData, redirect) => dispatch => {
+  axios
+    .post("https://be-bw-sleep-tracker.herokuapp.com/register", userData)
+    .then(res => redirect.push("/"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };
 
-export const login = (creds, redirect) => dispatch => {
-  dispatch({ type: LOGIN_PENDING });
-  axiosWithAuth()
-    .post("https://be-bw-sleep-tracker.herokuapp.com/login", creds)
+// Login - Get User Token
+export const login = (userData, redirect) => dispatch => {
+  axios
+    .post("https://be-bw-sleep-tracker.herokuapp.com/login", userData)
     .then(res => {
-      console.log(res);
-      localStorage.setItem("token", res.data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.user });
+      console.log(res.data);
+      // Save to local storage
+      const { token } = res.data;
+      // Set token to local storage
+      localStorage.setItem("jwtToken", token);
+      // Set token to Auth header
+      setAuthToken(token);
+      // Decode token to get user data
+      const decoded = jwt_decode(token);
+      // Set current user
+      dispatch(setCurrentUser(decoded));
+
       redirect.push("/dashboard");
     })
-    .catch(err => {
-      console.log(err);
-      dispatch({ type: LOGIN_FAILURE, payload: "Login user failed!" });
-    });
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Set logged in user
+export const setCurrentUser = decoded => {
+  return {
+    type: SET_CURRENT_USER,
+    payload: decoded
+  };
+};
+
+// Log user out
+export const logoutUser = () => dispatch => {
+  // Remove token from localStorage
+  localStorage.removeItem("jwtToken");
+  // Remove auth header for future requests
+  setAuthToken(false);
+  // Set current user to {} which will set isAuthenticated to false
+  dispatch(setCurrentUser({}));
+  window.location.href = "/";
 };

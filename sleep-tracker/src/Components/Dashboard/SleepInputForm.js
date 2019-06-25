@@ -114,7 +114,7 @@ class SleepInputForm extends Component {
               onChange={this.getDate}
             />
             <div>
-              <Clock label="Sleep Start"/>
+              <Clock label="Sleep Start" />
               <Clock label="Sleep End" />
               {/* <TextField
                 value={this.state.startTime}
@@ -151,14 +151,14 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Morning")}
-                variant={this.state.morning === 3 ? "contained" : "text"}
+                variant={this.state.morning === 1 ? "contained" : "text"}
               >
                 😴
               </Button>
               <Button
                 size="small"
                 className={classes.emoji}
-                onClick={e => this.morningEmojiToggle(e, "Morning")}
+                onClick={e => this.emojiToggle(e, "Morning")}
                 variant={this.state.morning === 2 ? "contained" : "text"}
               >
                 😐
@@ -167,7 +167,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Morning")}
-                variant={this.state.morning === 1 ? "contained" : "text"}
+                variant={this.state.morning === 3 ? "contained" : "text"}
               >
                 😌
               </Button>
@@ -175,7 +175,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Morning")}
-                variant={this.state.morning === 1 ? "contained" : "text"}
+                variant={this.state.morning === 4 ? "contained" : "text"}
               >
                 😀
               </Button>
@@ -186,7 +186,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Daytime")}
-                variant={this.state.morning === 3 ? "contained" : "text"}
+                variant={this.state.day === 1 ? "contained" : "text"}
               >
                 😴
               </Button>
@@ -194,7 +194,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Daytime")}
-                variant={this.state.morning === 2 ? "contained" : "text"}
+                variant={this.state.day === 2 ? "contained" : "text"}
               >
                 😐
               </Button>
@@ -202,7 +202,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Daytime")}
-                variant={this.state.morning === 1 ? "contained" : "text"}
+                variant={this.state.day === 3 ? "contained" : "text"}
               >
                 😌
               </Button>
@@ -210,7 +210,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Daytime")}
-                variant={this.state.morning === 1 ? "contained" : "text"}
+                variant={this.state.day === 4 ? "contained" : "text"}
               >
                 😀
               </Button>

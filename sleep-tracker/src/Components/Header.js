@@ -1,15 +1,18 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { connect } from "react-redux";
+import { logoutUser } from "../store/actions/authActions";
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   root: {
     flexGrow: 1
   }
-}));
+});
 
-const Header = () => {
-  const classes = useStyles();
+const Header = props => {
+  const { classes, isAuthenticated } = props;
+
   return (
     <div className={classes.root}>
       <AppBar position="static" color="primary">
@@ -17,10 +20,25 @@ const Header = () => {
           <Typography variant="h5" color="inherit" className={classes.root}>
             Sleep Tracker
           </Typography>
+          {isAuthenticated && (
+            <Button variant="outlined" onClick={props.logoutUser}>
+              LOGOUT
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </div>
   );
 };
 
-export default Header;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(withStyles(styles)(Header));
