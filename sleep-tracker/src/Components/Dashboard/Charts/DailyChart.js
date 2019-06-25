@@ -20,6 +20,13 @@ class DailyChart extends Component {
   render() {
     const { width } = this.props;
 
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    let yyyy = today.getFullYear();
+
+    today = `${mm}/${dd}`;
+
     return (
       <Pie
         data={this.state.chartData}
@@ -29,7 +36,7 @@ class DailyChart extends Component {
           responsive: true,
           title: {
             display: true,
-            text: "Awake Time vs Sleep Time For Today",
+            text: `Awake Time vs Sleep Time For ${today}`,
             fontSize: width === "xs" ? 12 : 18
           }
         }}

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
-import chartColors from "./chartColors";
 import withWidth from "@material-ui/core/withWidth";
 import {
   red,
@@ -16,42 +15,24 @@ import {
   lightGreen
 } from "@material-ui/core/colors";
 
+const daysInMonth = (month, year) => {
+  const num = new Date(year, month, 0).getDate();
+
+  let array = [];
+
+  for (let i = 1; i < num + 1; i++) {
+    array.push(i);
+  }
+  return array;
+};
+
+console.log();
+
 class MonthlyChart extends Component {
   state = {
     chartData: {
       label: "Day Of Month",
-      labels: [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30
-      ],
+      labels: daysInMonth(6, 2019),
       datasets: [
         {
           label: "Hours Slept",

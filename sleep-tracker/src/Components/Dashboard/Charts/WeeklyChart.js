@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
-import chartColors from "./chartColors";
 import withWidth from "@material-ui/core/withWidth";
 
 import {
