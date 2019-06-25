@@ -1,25 +1,34 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-// import {} from "../../store/actions";
+import { getMonthlyData } from "../../store/actions/profileActions";
 
 import MonthlyChart from "./Charts/MonthlyChart";
 
-const Monthly = () => {
-  return (
-    <div style={{ width: "90%", margin: "auto" }}>
-      <MonthlyChart />
-    </div>
-  );
-};
+class Monthly extends Component {
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.getMonthlyData(this.props.id);
+    }
+  }
+
+  render() {
+    return (
+      <div style={{ width: "90%", margin: "auto" }}>
+        <MonthlyChart />
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
-    registering: state.registering,
-    error: state.error
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.error,
+    id: state.auth.user.subject
   };
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  { getMonthlyData }
 )(Monthly);

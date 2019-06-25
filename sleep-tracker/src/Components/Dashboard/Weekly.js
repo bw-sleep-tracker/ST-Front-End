@@ -1,25 +1,34 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-// import {} from "../../store/actions";
+import { getWeeklyData } from "../../store/actions/profileActions";
 
 import WeeklyChart from "./Charts/WeeklyChart";
 
-const Weekly = () => {
-  return (
-    <div style={{ width: "90%", margin: "auto" }}>
-      <WeeklyChart />
-    </div>
-  );
-};
+class Weekly extends Component {
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.getWeeklyData(this.props.id);
+    }
+  }
+
+  render() {
+    return (
+      <div style={{ width: "90%", margin: "auto" }}>
+        <WeeklyChart />
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
-    registering: state.registering,
-    error: state.error
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.error,
+    id: state.auth.user.subject
   };
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  { getWeeklyData }
 )(Weekly);

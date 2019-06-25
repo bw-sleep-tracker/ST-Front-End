@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { getDaily } from "../../store/actions/authActions";
+import { getDailyData } from "../../store/actions/profileActions";
 
 import DailyChart from "./Charts/DailyChart";
 
 class Daily extends Component {
   componentDidMount() {
-    // console.log(this.props.userData);
-    // if (this.props.userData) {
-    //   this.props.getDaily(this.props.userData.id);
-    // }
+    if (this.props.isAuthenticated) {
+      this.props.getDailyData(this.props.id);
+    }
   }
 
   render() {
@@ -23,14 +22,13 @@ class Daily extends Component {
 
 const mapStateToProps = state => {
   return {
-    registering: state.registering,
+    isAuthenticated: state.auth.isAuthenticated,
     error: state.error,
-    dailyData: state.dailyData,
-    userData: state.userData
+    id: state.auth.user.subject
   };
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  { getDailyData }
 )(Daily);
