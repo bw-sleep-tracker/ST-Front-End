@@ -34,11 +34,11 @@ class SleepInputForm extends Component {
     date: "",
     startTime: {
       time: "7:00 pm",
-      displayTimePicker: true
+      displayTimePicker: false
     },
     endTime: {
       time: "7:00 am",
-      displayTimePicker: true
+      displayTimePicker: false
     },
     morning: 5,
     day: 5
