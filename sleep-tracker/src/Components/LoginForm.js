@@ -53,9 +53,8 @@ class LoginForm extends Component {
     e.preventDefault();
     console.log("I AM THE LOGIN BUTTON");
     console.log(this.state);
-    this.props.login(this.state).then(() => {
-      this.props.history.push("/dashboard");
-    });
+    this.props.login(this.state, this.props.history);
+    // this.props.history.push("/dashboard");
   };
 
   render() {

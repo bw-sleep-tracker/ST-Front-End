@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import {} from "../../store/actions";
 
 import WeeklyChart from "./Charts/WeeklyChart";
 
@@ -10,4 +12,14 @@ const Weekly = () => {
   );
 };
 
-export default Weekly;
+const mapStateToProps = state => {
+  return {
+    registering: state.registering,
+    error: state.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Weekly);
