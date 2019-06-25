@@ -4,7 +4,7 @@ import WeeklyChart from "./Charts/WeeklyChart";
 
 const Weekly = () => {
   return (
-    <div>
+    <div style={{ width: "90%", margin: "auto" }}>
       <WeeklyChart />
     </div>
   );
