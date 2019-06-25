@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import withWidth from "@material-ui/core/withWidth";
 import {
   red,
@@ -68,7 +68,9 @@ class MonthlyChart extends Component {
             6,
             7
           ],
-          backgroundColor: deepPurple[500]
+          // backgroundColor: deepPurple[500],
+          borderColor: deepPurple[500],
+          fill: false
         }
       ]
     }
@@ -77,7 +79,7 @@ class MonthlyChart extends Component {
   render() {
     console.log(this.state.chartData.datasets[0].data);
     return (
-      <Bar
+      <Line
         data={this.state.chartData}
         height={400}
         options={{
@@ -87,16 +89,16 @@ class MonthlyChart extends Component {
             text: "Hours Slept Per Date",
             fontSize: this.props.width === "xs" ? 12 : 18
           },
-          legend: { display: false },
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true
-                }
-              }
-            ]
-          }
+          legend: { display: false }
+          // scales: {
+          //   yAxes: [
+          //     {
+          //       ticks: {
+          //         beginAtZero: true
+          //       }
+          //     }
+          //   ]
+          // }
         }}
       />
     );

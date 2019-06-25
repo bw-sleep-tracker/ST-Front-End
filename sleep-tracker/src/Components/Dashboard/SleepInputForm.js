@@ -33,8 +33,8 @@ class SleepInputForm extends Component {
     date: "",
     startTime: "",
     endTime: "",
-    morning: null,
-    day: null
+    morning: 5,
+    day: 5
   };
 
   getDate = e => {
@@ -49,20 +49,23 @@ class SleepInputForm extends Component {
     this.setState({ endTime: e.target.value });
   };
 
-  morningEmojiToggle = (e, data) => {
+  emojiToggle = (e, data) => {
     console.log(e.target.textContent);
     let content = e.target.textContent;
 
     if (data === "Morning") {
       switch (content) {
-        case "😀": {
+        case "😴": {
           return this.setState({ morning: 1 });
         }
         case "😐": {
           return this.setState({ morning: 2 });
         }
-        case "😴": {
+        case "😌": {
           return this.setState({ morning: 3 });
+        }
+        case "😀": {
+          return this.setState({ morning: 4 });
         }
         default: {
           return this.setState({ morning: null });
@@ -70,17 +73,17 @@ class SleepInputForm extends Component {
       }
     } else if (data === "Daytime") {
       switch (content) {
-        case "😀": {
+        case "😴": {
           return this.setState({ day: 1 });
         }
         case "😐": {
           return this.setState({ day: 2 });
         }
-        case "😴": {
+        case "😌": {
           return this.setState({ day: 3 });
         }
-        default: {
-          return this.setState({ day: null });
+        case "😀": {
+          return this.setState({ day: 4 });
         }
       }
     }
@@ -92,7 +95,7 @@ class SleepInputForm extends Component {
     return (
       <Dialog open={this.props.status} onClose={this.props.toggle}>
         <DialogTitle>Submit Sleep</DialogTitle>
-        <DialogContent style={{ maxWidth: 400 }}>
+        <DialogContent style={{ maxWidth: 500 }}>
           <DialogContentText>
             Complete the form below to submit your sleep cycle.
           </DialogContentText>
@@ -143,10 +146,10 @@ class SleepInputForm extends Component {
               <Button
                 size="small"
                 className={classes.emoji}
-                onClick={e => this.morningEmojiToggle(e, "Morning")}
-                variant={this.state.morning === 1 ? "contained" : "text"}
+                onClick={e => this.emojiToggle(e, "Morning")}
+                variant={this.state.morning === 3 ? "contained" : "text"}
               >
-                😀
+                😴
               </Button>
               <Button
                 size="small"
@@ -159,10 +162,18 @@ class SleepInputForm extends Component {
               <Button
                 size="small"
                 className={classes.emoji}
-                onClick={e => this.morningEmojiToggle(e, "Morning")}
-                variant={this.state.morning === 3 ? "contained" : "text"}
+                onClick={e => this.emojiToggle(e, "Morning")}
+                variant={this.state.morning === 1 ? "contained" : "text"}
               >
-                😴
+                😌
+              </Button>
+              <Button
+                size="small"
+                className={classes.emoji}
+                onClick={e => this.emojiToggle(e, "Morning")}
+                variant={this.state.morning === 1 ? "contained" : "text"}
+              >
+                😀
               </Button>
             </DialogContentText>
             <DialogContentText style={{ textAlign: "right" }}>
@@ -170,26 +181,34 @@ class SleepInputForm extends Component {
               <Button
                 size="small"
                 className={classes.emoji}
-                onClick={e => this.morningEmojiToggle(e, "Daytime")}
-                variant={this.state.day === 1 ? "contained" : "text"}
+                onClick={e => this.emojiToggle(e, "Daytime")}
+                variant={this.state.morning === 3 ? "contained" : "text"}
               >
-                😀
+                😴
               </Button>
               <Button
                 size="small"
                 className={classes.emoji}
-                onClick={e => this.morningEmojiToggle(e, "Daytime")}
-                variant={this.state.day === 2 ? "contained" : "text"}
+                onClick={e => this.emojiToggle(e, "Daytime")}
+                variant={this.state.morning === 2 ? "contained" : "text"}
               >
                 😐
               </Button>
               <Button
                 size="small"
                 className={classes.emoji}
-                onClick={e => this.morningEmojiToggle(e, "Daytime")}
-                variant={this.state.day === 3 ? "contained" : "text"}
+                onClick={e => this.emojiToggle(e, "Daytime")}
+                variant={this.state.morning === 1 ? "contained" : "text"}
               >
-                😴
+                😌
+              </Button>
+              <Button
+                size="small"
+                className={classes.emoji}
+                onClick={e => this.emojiToggle(e, "Daytime")}
+                variant={this.state.morning === 1 ? "contained" : "text"}
+              >
+                😀
               </Button>
             </DialogContentText>
           </form>
