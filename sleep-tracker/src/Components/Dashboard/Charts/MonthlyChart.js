@@ -68,9 +68,9 @@ class MonthlyChart extends Component {
             6,
             7
           ],
-          // backgroundColor: deepPurple[500],
-          borderColor: deepPurple[500],
-          fill: false
+          backgroundColor: "rgba(33, 150, 243, 0.25)",
+          borderColor: blue[500],
+          lineTension: 0.2
         }
       ]
     }
@@ -89,16 +89,16 @@ class MonthlyChart extends Component {
             text: "Hours Slept Per Date",
             fontSize: this.props.width === "xs" ? 12 : 18
           },
-          legend: { display: false }
-          // scales: {
-          //   yAxes: [
-          //     {
-          //       ticks: {
-          //         beginAtZero: true
-          //       }
-          //     }
-          //   ]
-          // }
+          legend: { display: false },
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true
+                }
+              }
+            ]
+          }
         }}
       />
     );
