@@ -45,16 +45,12 @@ class LoginForm extends Component {
   };
 
   handleChange = event => {
-    console.log("I AM THE TEXT INPUT BUTTON");
     this.setState({ [event.target.name]: event.target.value });
   };
 
   loginSubmit = e => {
     e.preventDefault();
-    console.log("I AM THE LOGIN BUTTON");
-    console.log(this.state);
     this.props.login(this.state, this.props.history);
-    // this.props.history.push("/dashboard");
   };
 
   render() {
