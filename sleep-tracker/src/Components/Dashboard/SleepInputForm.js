@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import TimeKeeper from "react-timekeeper";
+import React, { Component, useState } from "react";
+
+import { TimePicker } from "@material-ui/pickers";
 import { withStyles } from "@material-ui/core/styles";
 import {
   TextField,
@@ -32,14 +33,8 @@ const styles = theme => ({
 class SleepInputForm extends Component {
   state = {
     date: "",
-    startTime: {
-      time: "7:00 pm",
-      displayTimePicker: false
-    },
-    endTime: {
-      time: "7:00 am",
-      displayTimePicker: false
-    },
+    startTime: "",
+    endTime: "",
     morning: 5,
     day: 5
   };
@@ -48,45 +43,17 @@ class SleepInputForm extends Component {
     this.setState({ date: e.target.value });
   };
 
-  handleStartTimeChange = newTime => {
-    this.setState({
-      startTime: {
-        time: newTime.formatted
-      }
-    });
+  getStartTime = e => {
+    this.setState({ startTime: e.target.value });
   };
 
-  handleStopTimeChange = newTime => {
-    this.setState({
-      endTime: {
-        time: newTime.formatted
-      }
-    });
+  getEndTime = e => {
+    this.setState({ endTime: e.target.value });
   };
 
-  toggleStartTimekeeper = val => {
-    this.setState({
-      startTime: {
-        displayTimePicker: val
-      }
-    });
+  BasicTimePicker = () => {
+    const [selectedDate, handleDateChange] = useState(new Date());
   };
-
-  toggleStopTimekeeper = val => {
-    this.setState({
-      endTime: {
-        displayTimePicker: val
-      }
-    });
-  };
-
-  // getStartTime = e => {
-  //   this.setState({ startTime: e.target.value });
-  // };
-
-  // getEndTime = e => {
-  //   this.setState({ endTime: e.target.value });
-  // };
 
   emojiToggle = (e, data) => {
     console.log(e.target.textContent);
@@ -151,7 +118,8 @@ class SleepInputForm extends Component {
               onChange={this.getDate}
             />
             <div>
-              <TextField
+              <TimePicker autoOk label="12 hours" />
+              {/* <TextField
                 value={this.state.startTime}
                 id="time"
                 label="Sleep Start"
@@ -164,8 +132,8 @@ class SleepInputForm extends Component {
                   step: 300 // 5 min
                 }}
                 onChange={this.getStartTime}
-              />
-              {/* <TextField
+              /> */}
+              <TextField
                 value={this.state.endTime}
                 id="time"
                 label="Sleep End"
@@ -178,7 +146,7 @@ class SleepInputForm extends Component {
                   step: 300 // 5 min
                 }}
                 onChange={this.getEndTime}
-              /> */}
+              />
             </div>
             <DialogContentText style={{ textAlign: "right" }}>
               Morning Feeling:{" "}

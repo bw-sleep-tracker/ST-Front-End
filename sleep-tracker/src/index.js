@@ -9,10 +9,12 @@ import logger from "redux-logger";
 
 import "./index.css";
 import App from "./App";
+import { rootReducer } from "./store/reducers";
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import { indigo, blue } from "@material-ui/core/colors";
-import { rootReducer } from "./store/reducers";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import MomentUtils from "@date-io/moment";
 
 const theme = createMuiTheme({
   palette: {
@@ -39,7 +41,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <MuiThemeProvider theme={theme}>
-        <AppWithRouter />
+        <MuiPickersUtilsProvider utils={MomentUtils}>
+          <AppWithRouter />
+        </MuiPickersUtilsProvider>
       </MuiThemeProvider>
     </Router>
   </Provider>,
