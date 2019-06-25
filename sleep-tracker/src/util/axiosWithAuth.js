@@ -7,6 +7,6 @@ export const axiosWithAuth = () => {
       "Content-Type": "application/json",
       Authorization: token
     },
-    baseURL: "http://localhost:5000" //replace with heroku address,
+    baseURL: "https://be-bw-sleep-tracker.herokuapp.com" //replace with heroku address,
   });
 };

@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import {} from "../../store/actions";
 
 import MonthlyChart from "./Charts/MonthlyChart";
 
@@ -10,4 +12,14 @@ const Monthly = () => {
   );
 };
 
-export default Monthly;
+const mapStateToProps = state => {
+  return {
+    registering: state.registering,
+    error: state.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(Monthly);

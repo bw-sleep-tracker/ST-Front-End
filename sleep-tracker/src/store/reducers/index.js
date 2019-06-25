@@ -1,6 +1,7 @@
 import * as actionType from "../actions";
 
 const initialState = {
+  userData: null,
   deletingSleepEntry: false,
   fetchingSleepEntries: false,
   sleepEntries: [],
@@ -8,7 +9,8 @@ const initialState = {
   registering: false,
   savingSleepEntry: false,
   updatingEntry: false,
-  error: null
+  error: null,
+  dailyData: []
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -43,13 +45,19 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: false,
-        error: ""
+        error: "",
+        userData: action.payload
       };
     case actionType.LOGIN_FAILURE:
       return {
         ...state,
         logginIn: false,
         error: action.payload
+      };
+    case actionType.GET_DAILY_SUCCESS:
+      return {
+        ...state,
+        dailyData: action.payload
       };
     default:
       return state;
