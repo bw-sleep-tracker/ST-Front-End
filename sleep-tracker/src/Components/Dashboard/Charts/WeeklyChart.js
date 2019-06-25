@@ -3,6 +3,20 @@ import { Line } from "react-chartjs-2";
 import chartColors from "./chartColors";
 import withWidth from "@material-ui/core/withWidth";
 
+import {
+  red,
+  pink,
+  purple,
+  deepPurple,
+  indigo,
+  blue,
+  lightBlue,
+  cyan,
+  teal,
+  green,
+  lightGreen
+} from "@material-ui/core/colors";
+
 class WeeklyChart extends Component {
   state = {
     chartData: {
@@ -11,7 +25,8 @@ class WeeklyChart extends Component {
         {
           label: "Hours Slept",
           data: [7, 5, 9, 6, 6, 5, 8],
-          borderColor: chartColors()
+          borderColor: green[700],
+          fill: false
         }
       ]
     }
@@ -20,7 +35,7 @@ class WeeklyChart extends Component {
     return (
       <Line
         data={this.state.chartData}
-        height={275}
+        height={400}
         options={{
           maintainAspectRatio: false,
           title: {
@@ -28,6 +43,7 @@ class WeeklyChart extends Component {
             text: "Hours Slept Per Day",
             fontSize: this.props.width === "xs" ? 12 : 18
           },
+
           legend: { display: false },
           scales: {
             yAxes: [
