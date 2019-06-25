@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getDaily } from "../../store/actions";
+// import { getDaily } from "../../store/actions/authActions";
 
 import DailyChart from "./Charts/DailyChart";
 
 class Daily extends Component {
   componentDidMount() {
-    console.log(this.props.userData);
-    if (this.props.userData) {
-      this.props.getDaily(this.props.userData.id);
-    }
+    // console.log(this.props.userData);
+    // if (this.props.userData) {
+    //   this.props.getDaily(this.props.userData.id);
+    // }
   }
 
   render() {
-    console.log(this.props.userData);
     return (
       <div>
         <DailyChart />
@@ -33,5 +32,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getDaily }
+  {}
 )(Daily);

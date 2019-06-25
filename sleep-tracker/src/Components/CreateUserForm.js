@@ -6,7 +6,7 @@ import Loader from "react-loader-spinner";
 import { Card, TextField, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
-import { registerUser } from "../store/actions";
+import { registerUser } from "../store/actions/authActions";
 
 const styles = theme => ({
   root: {
