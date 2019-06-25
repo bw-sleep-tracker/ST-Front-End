@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { Card, TextField, Button, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
-import { login } from "../store/actions";
+import { login } from "../store/actions/authActions";
 
 const styles = theme => ({
   root: {
