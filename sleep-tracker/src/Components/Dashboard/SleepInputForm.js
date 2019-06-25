@@ -10,6 +10,8 @@ import {
   Button
 } from "@material-ui/core";
 
+import Clock from "../../util/Clock";
+
 const styles = theme => ({
   form: {
     display: "flex",
@@ -112,7 +114,9 @@ class SleepInputForm extends Component {
               onChange={this.getDate}
             />
             <div>
-              <TextField
+              <Clock label="Sleep Start"/>
+              <Clock label="Sleep End" />
+              {/* <TextField
                 value={this.state.startTime}
                 id="time"
                 label="Sleep Start"
@@ -125,8 +129,8 @@ class SleepInputForm extends Component {
                   step: 300 // 5 min
                 }}
                 onChange={this.getStartTime}
-              />
-              <TextField
+              /> */}
+              {/* <TextField
                 value={this.state.endTime}
                 id="time"
                 label="Sleep End"
@@ -139,7 +143,7 @@ class SleepInputForm extends Component {
                   step: 300 // 5 min
                 }}
                 onChange={this.getEndTime}
-              />
+              /> */}
             </div>
             <DialogContentText style={{ textAlign: "right" }}>
               Morning Feeling:{" "}
