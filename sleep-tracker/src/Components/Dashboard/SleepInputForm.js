@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TimeKeeper from "react-timekeeper";
 import { withStyles } from "@material-ui/core/styles";
 import {
   TextField,
@@ -31,8 +32,14 @@ const styles = theme => ({
 class SleepInputForm extends Component {
   state = {
     date: "",
-    startTime: "",
-    endTime: "",
+    startTime: {
+      time: "7:00 pm",
+      displayTimePicker: true
+    },
+    endTime: {
+      time: "7:00 am",
+      displayTimePicker: true
+    },
     morning: 5,
     day: 5
   };
@@ -41,13 +48,45 @@ class SleepInputForm extends Component {
     this.setState({ date: e.target.value });
   };
 
-  getStartTime = e => {
-    this.setState({ startTime: e.target.value });
+  handleStartTimeChange = newTime => {
+    this.setState({
+      startTime: {
+        time: newTime.formatted
+      }
+    });
   };
 
-  getEndTime = e => {
-    this.setState({ endTime: e.target.value });
+  handleStopTimeChange = newTime => {
+    this.setState({
+      endTime: {
+        time: newTime.formatted
+      }
+    });
   };
+
+  toggleStartTimekeeper = val => {
+    this.setState({
+      startTime: {
+        displayTimePicker: val
+      }
+    });
+  };
+
+  toggleStopTimekeeper = val => {
+    this.setState({
+      endTime: {
+        displayTimePicker: val
+      }
+    });
+  };
+
+  // getStartTime = e => {
+  //   this.setState({ startTime: e.target.value });
+  // };
+
+  // getEndTime = e => {
+  //   this.setState({ endTime: e.target.value });
+  // };
 
   emojiToggle = (e, data) => {
     console.log(e.target.textContent);
@@ -126,7 +165,7 @@ class SleepInputForm extends Component {
                 }}
                 onChange={this.getStartTime}
               />
-              <TextField
+              {/* <TextField
                 value={this.state.endTime}
                 id="time"
                 label="Sleep End"
@@ -139,7 +178,7 @@ class SleepInputForm extends Component {
                   step: 300 // 5 min
                 }}
                 onChange={this.getEndTime}
-              />
+              /> */}
             </div>
             <DialogContentText style={{ textAlign: "right" }}>
               Morning Feeling:{" "}
