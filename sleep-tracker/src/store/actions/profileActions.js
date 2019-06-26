@@ -18,7 +18,7 @@ export const getDailyData = id => dispatch => {
     .then(res =>
       dispatch({
         type: GET_DAILY_DATA,
-        payload: res.data[0]
+        payload: res.data[0] || ""
       })
     )
     .catch(err =>
