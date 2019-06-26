@@ -14,7 +14,7 @@ class Daily extends Component {
   render() {
     return (
       <div>
-        <DailyChart />
+        <DailyChart data={this.props.dailyData} />
       </div>
     );
   }
@@ -24,7 +24,8 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error,
-    id: state.auth.user.subject
+    id: state.auth.user.subject,
+    dailyData: state.profile.dailyData
   };
 };
 

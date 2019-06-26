@@ -76,7 +76,7 @@ class DashboardContainer extends Component {
             <AddIcon />
           </Fab>
         </Toolbar>
-        <Paper>{content}</Paper>
+        <Paper style={{ width: "90%", margin: "auto" }}>{content}</Paper>
         <SleepInputForm
           status={this.state.sleepInputStatus}
           toggle={this.sleepInputToggle}

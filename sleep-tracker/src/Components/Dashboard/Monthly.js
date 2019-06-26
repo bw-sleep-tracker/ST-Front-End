@@ -14,7 +14,7 @@ class Monthly extends Component {
   render() {
     return (
       <div style={{ width: "90%", margin: "auto" }}>
-        <MonthlyChart />
+        <MonthlyChart data={this.props.monthlyData} />
       </div>
     );
   }
@@ -24,7 +24,8 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error,
-    id: state.auth.user.subject
+    id: state.auth.user.subject,
+    monthlyData: state.profile.monthlyData
   };
 };
 

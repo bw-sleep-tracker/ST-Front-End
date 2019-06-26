@@ -2,19 +2,7 @@ import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 import withWidth from "@material-ui/core/withWidth";
 
-import {
-  red,
-  pink,
-  purple,
-  deepPurple,
-  indigo,
-  blue,
-  lightBlue,
-  cyan,
-  teal,
-  green,
-  lightGreen
-} from "@material-ui/core/colors";
+import { green } from "@material-ui/core/colors";
 
 class WeeklyChart extends Component {
   state = {
@@ -31,6 +19,8 @@ class WeeklyChart extends Component {
     }
   };
   render() {
+    const { data } = this.props;
+    console.log(data);
     return (
       <Line
         data={this.state.chartData}
