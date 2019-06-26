@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getMonthlyData } from "../../store/actions/profileActions";
 
+import { sleepCalc } from "../../util/sleepCalc";
+
 import MonthlyChart from "./Charts/MonthlyChart";
 
 class Monthly extends Component {
@@ -12,11 +14,21 @@ class Monthly extends Component {
   }
 
   render() {
-    return (
-      <div style={{ width: "90%", margin: "auto" }}>
-        <MonthlyChart data={this.props.monthlyData} />
-      </div>
-    );
+    let graphData = [];
+
+    console.log(this.props.monthlyData);
+
+    graphData = this.props.monthlyData.map(item => {
+      return parseInt(sleepCalc(item.start_sleep_time, item.end_sleep_time));
+    });
+
+    let content;
+
+    if (graphData.length > 0) {
+      content = <MonthlyChart data={graphData} />;
+    }
+
+    return <div style={{ width: "90%", margin: "auto" }}>{content}</div>;
   }
 }
 

@@ -22,38 +22,7 @@ class MonthlyChart extends Component {
       datasets: [
         {
           label: "Hours Slept",
-          data: [
-            7,
-            5,
-            9,
-            6,
-            6,
-            5,
-            8,
-            4,
-            6,
-            7,
-            7,
-            5,
-            9,
-            6,
-            6,
-            5,
-            8,
-            4,
-            6,
-            7,
-            7,
-            5,
-            9,
-            6,
-            6,
-            5,
-            8,
-            4,
-            6,
-            7
-          ],
+          data: this.props.data,
           backgroundColor: "rgba(33, 150, 243, 0.25)",
           borderColor: blue[500],
           lineTension: 0.2
@@ -64,7 +33,7 @@ class MonthlyChart extends Component {
 
   render() {
     const { data } = this.props;
-
+    console.log(data);
     return (
       <Line
         data={this.state.chartData}

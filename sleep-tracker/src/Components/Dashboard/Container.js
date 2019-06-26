@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { Toolbar, Fab, Paper, Tabs, Tab } from "@material-ui/core";
+import { Toolbar, Fab, Paper, Tabs, Tab, Button } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
+import Recommendations from "./Recommendations";
 import SleepInputForm from "./SleepInputForm";
 import Daily from "./Daily";
 import Weekly from "./Weekly";
@@ -27,15 +28,24 @@ class DashboardContainer extends Component {
   state = {
     tabValue: 0,
     sleepInputStatus: false,
-    activeData: null
+    activeData: null,
+    recStatus: false
   };
 
   changeTab = (event, newValue) => {
     this.setState({ tabValue: newValue });
   };
 
-  sleepInputToggle = () => {
-    this.setState({ sleepInputStatus: !this.state.sleepInputStatus });
+  toggleRecStatus = () => {
+    this.setState({ recStatus: !this.state.recStatus });
+  };
+
+  sleepInputOpen = () => {
+    this.setState({ sleepInputStatus: true });
+  };
+
+  sleepInputClose = () => {
+    this.setState({ sleepInputStatus: false, activeData: null });
   };
 
   editSleep = data => {
@@ -50,7 +60,8 @@ class DashboardContainer extends Component {
   render() {
     const { classes } = this.props;
     const { tabValue } = this.state;
-    console.log(this.state);
+
+    console.log(this.state.activeData);
 
     let content;
 
@@ -86,16 +97,30 @@ class DashboardContainer extends Component {
             aria-label="Add"
             size="small"
             className={classes.fab}
-            onClick={this.sleepInputToggle}
+            onClick={this.sleepInputOpen}
           >
             <AddIcon />
+          </Fab>
+          <Fab
+            color="secondary"
+            aria-label="Add"
+            size="small"
+            variant="extended"
+            style={{ paddingLeft: 15, paddingRight: 15 }}
+            onClick={this.toggleRecStatus}
+          >
+            Recommendations
           </Fab>
         </Toolbar>
         <Paper style={{ width: "90%", margin: "auto" }}>{content}</Paper>
         <SleepInputForm
           status={this.state.sleepInputStatus}
-          toggle={this.sleepInputToggle}
+          close={this.sleepInputClose}
           activeData={this.state.activeData}
+        />
+        <Recommendations
+          status={this.state.recStatus}
+          toggle={this.toggleRecStatus}
         />
       </div>
     );
