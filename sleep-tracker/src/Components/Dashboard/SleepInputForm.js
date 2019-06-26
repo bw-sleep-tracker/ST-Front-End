@@ -9,6 +9,9 @@ import {
   DialogTitle,
   Button
 } from "@material-ui/core";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import { TimePicker } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 import Clock from "../../util/Clock";
 
@@ -43,12 +46,27 @@ class SleepInputForm extends Component {
     this.setState({ date: e.target.value });
   };
 
-  getStartTime = e => {
-    this.setState({ startTime: e.target.value });
+  // getStartTime = date => {
+  //   console.log("date");
+  //   // this.setState({ startTime: e.target.value });
+  // };
+
+  // getEndTime = e => {
+  //   this.setState({ endTime: e.target.value });
+  // };
+
+  handleClockSuccess = date => {
+    console.log("date:", date);
+    this.setState({
+      startTime: date
+    });
   };
 
-  getEndTime = e => {
-    this.setState({ endTime: e.target.value });
+  handleClockSuccess_end = date => {
+    console.log("date:", date);
+    this.setState({
+      endTime: date
+    });
   };
 
   emojiToggle = (e, data) => {
@@ -114,36 +132,16 @@ class SleepInputForm extends Component {
               onChange={this.getDate}
             />
             <div>
-              <Clock label="Sleep Start" />
-              <Clock label="Sleep End" />
-              {/* <TextField
-                value={this.state.startTime}
-                id="time"
+              <Clock
                 label="Sleep Start"
-                type="time"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true
-                }}
-                inputProps={{
-                  step: 300 // 5 min
-                }}
-                onChange={this.getStartTime}
-              /> */}
-              {/* <TextField
-                value={this.state.endTime}
-                id="time"
+                id="startTime"
+                onSuccess={this.handleClockSuccess}
+              />
+              <Clock
                 label="Sleep End"
-                type="time"
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true
-                }}
-                inputProps={{
-                  step: 300 // 5 min
-                }}
-                onChange={this.getEndTime}
-              /> */}
+                id="endTime"
+                onSuccess={this.handleClockSuccess_end}
+              />
             </div>
             <DialogContentText style={{ textAlign: "right" }}>
               Morning Feeling:{" "}
