@@ -70,12 +70,13 @@ export const getMonthlyData = id => dispatch => {
 export const getYearlyData = id => dispatch => {
   axios
     .get(`https://be-bw-sleep-tracker.herokuapp.com/tracker/${id}/year/2019`)
-    .then(res =>
+    .then(res => {
+      console.log(res);
       dispatch({
         type: GET_YEARLY_DATA,
         payload: res.data
-      })
-    )
+      });
+    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -87,13 +88,6 @@ export const getYearlyData = id => dispatch => {
 export const postSleepObject = data => dispatch => {
   axios
     .post("https://be-bw-sleep-tracker.herokuapp.com/tracker", data)
-    .then(res => {
-      console.log(res);
-      dispatch({
-        type: POST_SLEEP_OBJECT,
-        payload: res.data
-      });
-    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

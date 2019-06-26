@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { postSleepObject } from "../../store/actions/profileActions";
 import { withStyles } from "@material-ui/core/styles";
 import {
   TextField,
@@ -43,7 +45,21 @@ class SleepInputForm extends Component {
   };
 
   submitForm = () => {
-    console.log(this.state);
+    const dateArray = this.state.date.split("-");
+    const formattedDate = `${dateArray[1]}/${dateArray[2]}/${dateArray[0]}`;
+    const object = {
+      user_id: this.props.id,
+      date: formattedDate,
+      start_sleep_time: this.state.startTime,
+      end_sleep_time: this.state.endTime,
+      day_emotion: this.state.day,
+      sleep_emotion: this.state.morning,
+      month: parseInt(dateArray[1]),
+      year: parseInt(dateArray[0]),
+      day: parseInt(dateArray[2])
+    };
+    this.props.postSleepObject(object);
+    this.setState({ date: "", startTime: "", endTime: "", morning: 5, day: 5 });
   };
 
   getDate = e => {
@@ -74,7 +90,6 @@ class SleepInputForm extends Component {
   };
 
   emojiToggle = (e, data) => {
-    console.log(e.target.textContent);
     let content = e.target.textContent;
 
     if (data === "Morning") {
@@ -115,7 +130,7 @@ class SleepInputForm extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.state);
+
     return (
       <Dialog open={this.props.status} onClose={this.props.toggle}>
         <DialogTitle>Submit Sleep</DialogTitle>
@@ -234,4 +249,15 @@ class SleepInputForm extends Component {
   }
 }
 
-export default withStyles(styles)(SleepInputForm);
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.error,
+    id: state.auth.user.subject
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { postSleepObject }
+)(withStyles(styles)(SleepInputForm));
