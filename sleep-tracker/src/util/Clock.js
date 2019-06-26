@@ -3,11 +3,12 @@ import React, { useState, useEffect } from "react";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { TimePicker } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import moment from "moment";
 
 const Clock = props => {
   const [selectedDate, handleDateChange] = useState(new Date());
   useEffect(() => {
-    props.onSuccess(selectedDate);
+    props.onSuccess(moment(selectedDate).format("HH:mm"));
   }, [selectedDate]);
 
   return (
