@@ -1,7 +1,8 @@
 import {
   GET_DAILY_DATA,
   GET_WEEKLY_DATA,
-  GET_MONTHLY_DATA
+  GET_MONTHLY_DATA,
+  GET_YEARLY_DATA
 } from "../actions/types";
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
   error: null,
   dailyData: [],
   weeklyData: [],
-  monthlyData: []
+  monthlyData: [],
+  yearlyData: []
 };
 
 export default function(state = initialState, action) {
@@ -32,6 +34,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         monthlyData: action.payload
+      };
+    case GET_YEARLY_DATA:
+      return {
+        ...state,
+        yearlyData: action.payload
       };
     default:
       return state;

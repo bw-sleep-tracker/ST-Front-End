@@ -17,4 +17,6 @@ export const GET_WEEKLY_DATA = "GET_WEEKLY_DATA";
 
 export const GET_MONTHLY_DATA = "GET_MONTHLY_DATA";
 
+export const GET_YEARLY_DATA = "GET_YEARLY_DATA";
+
 export const POST_SLEEP_OBJECT = "POST_SLEEP_OBJECT";

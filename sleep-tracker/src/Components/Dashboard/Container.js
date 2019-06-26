@@ -7,6 +7,7 @@ import SleepInputForm from "./SleepInputForm";
 import Daily from "./Daily";
 import Weekly from "./Weekly";
 import Monthly from "./Monthly";
+import Yearly from "./Yearly";
 
 const styles = theme => ({
   tabsRoot: {
@@ -48,6 +49,8 @@ class DashboardContainer extends Component {
       content = <Weekly />;
     } else if (this.state.tabValue === 2) {
       content = <Monthly />;
+    } else if (this.state.tabValue === 3) {
+      content = <Yearly />;
     }
 
     return (
@@ -63,6 +66,7 @@ class DashboardContainer extends Component {
             <Tab label="Daily" />
             <Tab label="Weekly" />
             <Tab label="Monthly" />
+            <Tab label="Yearly" />
           </Tabs>
         </Paper>
         <Toolbar className={classes.root}>
