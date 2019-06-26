@@ -20,6 +20,8 @@ class DailyChart extends Component {
   render() {
     const { width, data } = this.props;
 
+    console.log(data);
+
     return (
       <Pie
         data={this.state.chartData}
