@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { postSleepObject } from "../../store/actions/profileActions";
+import {
+  postSleepObject,
+  updateSleepObject
+} from "../../store/actions/profileActions";
 import { withStyles } from "@material-ui/core/styles";
 import {
   TextField,
@@ -60,6 +63,41 @@ class SleepInputForm extends Component {
     };
     this.props.postSleepObject(object);
     this.setState({ date: "", startTime: "", endTime: "", morning: 5, day: 5 });
+    this.props.close();
+  };
+
+  updateForm = () => {
+    const { activeData } = this.props;
+    const dateArray = this.state.date.split("-");
+    const formattedDate = `${dateArray[1]}/${dateArray[2]}/${dateArray[0]}`;
+    const object = {
+      user_id: this.props.id,
+      date: formattedDate,
+      start_sleep_time: this.state.startTime,
+      end_sleep_time: this.state.endTime,
+      day_emotion: this.state.day,
+      sleep_emotion: this.state.morning,
+      month: parseInt(dateArray[1]),
+      year: parseInt(dateArray[0]),
+      day: parseInt(dateArray[2])
+    };
+
+    if (this.state.date === "") {
+      const dateArray2 = activeData.date.split("/");
+      object.date = activeData.date;
+      object.month = parseInt(dateArray2[0]);
+      object.year = parseInt(dateArray2[2]);
+      object.day = parseInt(dateArray2[1]);
+    }
+    if (this.state.startTime === "")
+      object.start_sleep_time = activeData.startTime;
+    if (this.state.endTime === "") object.end_sleep_time = activeData.endTime;
+    if (this.state.day === 5) object.day_emotion = activeData.day;
+    if (this.state.morning === 5) object.day_morning = activeData.morning;
+
+    this.props.updateSleepObject(object);
+    this.setState({ date: "", startTime: "", endTime: "", morning: 5, day: 5 });
+    this.props.close();
   };
 
   getDate = e => {
@@ -141,12 +179,26 @@ class SleepInputForm extends Component {
       morningNum = this.props.activeData.morning;
       dayNum = this.props.activeData.day;
     } else {
+    }
+
+    if (this.state.morning === 5 && !this.props.activeData) {
       morningNum = this.state.morning;
+    } else if (this.state.morning === 5 && this.props.activeData) {
+      morningNum = this.props.activeData.morning;
+    } else if (this.state.morning !== 5) {
+      morningNum = this.state.morning;
+    }
+
+    if (this.state.day === 5 && !this.props.activeData) {
+      dayNum = this.state.day;
+    } else if (this.state.day === 5 && this.props.activeData) {
+      dayNum = this.props.activeData.day;
+    } else if (this.state.day !== 5) {
       dayNum = this.state.day;
     }
 
     return (
-      <Dialog open={this.props.status} onClose={this.props.toggle}>
+      <Dialog open={this.props.status} onClose={this.props.close}>
         <DialogTitle>Submit Sleep</DialogTitle>
         <DialogContent style={{ maxWidth: 500 }}>
           <DialogContentText>
@@ -253,7 +305,7 @@ class SleepInputForm extends Component {
             color="primary"
             fullWidth
             variant="contained"
-            onClick={this.submitForm}
+            onClick={this.updateForm}
           >
             SUBMIT
           </Button>
@@ -273,5 +325,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { postSleepObject }
+  { postSleepObject, updateSleepObject }
 )(withStyles(styles)(SleepInputForm));
