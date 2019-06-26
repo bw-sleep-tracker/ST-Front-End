@@ -1,22 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getDailyData } from "../../store/actions/profileActions";
+import { getYearlyData } from "../../store/actions/profileActions";
 
-import DailyChart from "./Charts/DailyChart";
+import YearlyTable from "./Charts/YearlyTable";
 
-class Daily extends Component {
+class Yearly extends Component {
   componentDidMount() {
     if (this.props.isAuthenticated) {
-      this.props.getDailyData(this.props.id);
+      this.props.getYearlyData(this.props.id);
     }
   }
 
   render() {
-    return (
-      <div>
-        <DailyChart data={this.props.dailyData} />
-      </div>
-    );
+    return <YearlyTable data={this.props.yearlyData} />;
   }
 }
 
@@ -25,11 +21,11 @@ const mapStateToProps = state => {
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error,
     id: state.auth.user.subject,
-    dailyData: state.profile.dailyData
+    yearlyData: state.profile.yearlyData
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getDailyData }
-)(Daily);
+  { getYearlyData }
+)(Yearly);

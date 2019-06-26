@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Pie } from "react-chartjs-2";
 import withWidth from "@material-ui/core/withWidth";
-import { red, blue, green, deepPurple } from "@material-ui/core/colors";
+import { blue, deepPurple } from "@material-ui/core/colors";
 
 class DailyChart extends Component {
   state = {
@@ -18,14 +18,8 @@ class DailyChart extends Component {
   };
 
   render() {
-    const { width } = this.props;
-
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, "0");
-    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    let yyyy = today.getFullYear();
-
-    today = `${mm}/${dd}`;
+    const { width, data } = this.props;
+    console.log(data);
 
     return (
       <Pie
@@ -36,7 +30,7 @@ class DailyChart extends Component {
           responsive: true,
           title: {
             display: true,
-            text: `Awake Time vs Sleep Time For ${today}`,
+            text: `Awake Time vs Sleep Time For ${data.date}`,
             fontSize: width === "xs" ? 12 : 18
           }
         }}
