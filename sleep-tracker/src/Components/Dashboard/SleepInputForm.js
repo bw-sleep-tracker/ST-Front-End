@@ -14,9 +14,6 @@ import {
   DialogTitle,
   Button
 } from "@material-ui/core";
-import { MuiPickersUtilsProvider } from "@material-ui/pickers";
-import { TimePicker } from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
 
 import Clock from "../../util/Clock";
 
