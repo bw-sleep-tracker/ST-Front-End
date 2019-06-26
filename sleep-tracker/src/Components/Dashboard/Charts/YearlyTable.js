@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { deleteSleepObject } from "../../../store/actions/profileActions";
 import { withStyles } from "@material-ui/core/styles";
 import {
   Table,
@@ -23,6 +25,15 @@ const styles = theme => ({
 });
 
 class YearlyTable extends Component {
+  delete = item => {
+    const dateArray = item.date.split("/");
+    const id = this.props.id;
+    const month = dateArray[0];
+    const day = dateArray[1];
+    const year = dateArray[2];
+    this.props.deleteSleepObject(id, month, day, year);
+  };
+
   getEmoji = num => {
     if (num === 1) {
       return "😴";
@@ -66,10 +77,14 @@ class YearlyTable extends Component {
               <TableCell align="center">{sleepCalc(item.start_sleep_time, item.end_sleep_time)}</TableCell>
               <TableCell align="center">
                 <Button variant="outlined" style={{ margin: 5 }}>
-                  <i class="far fa-edit" />
+                  <i className="far fa-edit" />
                 </Button>
-                <Button variant="outlined" style={{ margin: 5 }}>
-                  <i class="far fa-trash-alt" />
+                <Button
+                  variant="outlined"
+                  style={{ margin: 5 }}
+                  onClick={() => this.delete(item)}
+                >
+                  <i className="far fa-trash-alt" />
                 </Button>
               </TableCell>
             </TableRow>
@@ -80,4 +95,15 @@ class YearlyTable extends Component {
   }
 }
 
-export default withStyles(styles)(YearlyTable);
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.error,
+    id: state.auth.user.subject
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { deleteSleepObject }
+)(withStyles(styles)(YearlyTable));
