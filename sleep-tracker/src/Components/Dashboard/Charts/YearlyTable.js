@@ -64,10 +64,10 @@ class YearlyTable extends Component {
               <TableCell align="center">N/A</TableCell>
               <TableCell align="center">
                 <Button variant="outlined" style={{ margin: 5 }}>
-                  Update
+                  <i class="far fa-edit" />
                 </Button>
                 <Button variant="outlined" style={{ margin: 5 }}>
-                  Delete
+                  <i class="far fa-trash-alt" />
                 </Button>
               </TableCell>
             </TableRow>
