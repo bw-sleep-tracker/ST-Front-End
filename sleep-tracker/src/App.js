@@ -24,7 +24,6 @@ const App = () => {
       <Header />
       <Route exact path="/" render={props => <LoginForm {...props} />} />
       <Route path="/create" render={props => <CreateUserForm {...props} />} />
-      <Route path="/test" component={Recommendation} />
       <PrivateRoute path="/dashboard" component={DashboardContainer} />
     </div>
   );
