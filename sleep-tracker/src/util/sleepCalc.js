@@ -28,4 +28,4 @@ export const sleepCalc = (start, end) => {
   );
 };
 
-// console.log(sleepCalc("22:00", "08:00")); // 10:00
+// console.log(sleepCalc("22:00", "06:00")); // 10:00
