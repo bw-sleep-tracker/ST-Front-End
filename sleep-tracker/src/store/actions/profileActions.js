@@ -6,6 +6,8 @@ import {
   GET_MONTHLY_DATA,
   GET_YEARLY_DATA,
   POST_SLEEP_OBJECT,
+  UPDATE_SLEEP_OBJECT,
+  DELETE_SLEEP_OBJECT,
   GET_ERRORS
 } from "./types";
 import { axiosWithAuth } from "../../util/axiosWithAuth";
@@ -85,13 +87,51 @@ export const getYearlyData = id => dispatch => {
 export const postSleepObject = data => dispatch => {
   axios
     .post("https://be-bw-sleep-tracker.herokuapp.com/tracker", data)
-    .then(
-      res => console.log(res)
-      // dispatch({
-      //   type: POST_SLEEP_OBJECT,
-      //   payload: res.data
-      // })
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: POST_SLEEP_OBJECT,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+export const deleteSleepObject = (id, date) => dispatch => {
+  axios
+    .delete(
+      `https://be-bw-sleep-tracker.herokuapp.com/tracker/${id}/date/:date`
     )
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: DELETE_SLEEP_OBJECT,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+export const updateSleepObject = data => dispatch => {
+  axios
+    .put("https://be-bw-sleep-tracker.herokuapp.com/tracker/", data)
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: UPDATE_SLEEP_OBJECT,
+        payload: res.data
+      });
+    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
