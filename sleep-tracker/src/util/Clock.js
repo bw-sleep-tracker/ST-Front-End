@@ -13,6 +13,7 @@ const Clock = props => {
         label={props.label}
         value={selectedDate}
         onChange={handleDateChange}
+        style={{ width: 150, margin: "25px 8px" }}
       />
     </MuiPickersUtilsProvider>
   );
