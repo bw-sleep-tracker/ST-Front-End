@@ -2,7 +2,10 @@ import {
   GET_DAILY_DATA,
   GET_WEEKLY_DATA,
   GET_MONTHLY_DATA,
-  GET_YEARLY_DATA
+  GET_YEARLY_DATA,
+  POST_SLEEP_OBJECT,
+  DELETE_SLEEP_OBJECT,
+  UPDATE_SLEEP_OBJECT
 } from "../actions/types";
 
 const initialState = {
@@ -36,6 +39,21 @@ export default function(state = initialState, action) {
         monthlyData: action.payload
       };
     case GET_YEARLY_DATA:
+      return {
+        ...state,
+        yearlyData: action.payload
+      };
+    case POST_SLEEP_OBJECT:
+      return {
+        ...state,
+        yearlyData: action.payload
+      };
+    case UPDATE_SLEEP_OBJECT:
+      return {
+        ...state,
+        yearlyData: action.payload
+      };
+    case DELETE_SLEEP_OBJECT:
       return {
         ...state,
         yearlyData: action.payload

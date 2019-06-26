@@ -39,6 +39,10 @@ class SleepInputForm extends Component {
     day: 5
   };
 
+  submitForm = () => {
+    console.log(this.state);
+  };
+
   getDate = e => {
     this.setState({ date: e.target.value });
   };
@@ -218,7 +222,12 @@ class SleepInputForm extends Component {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button color="primary" fullWidth variant="contained">
+          <Button
+            color="primary"
+            fullWidth
+            variant="contained"
+            onClick={this.submitForm}
+          >
             SUBMIT
           </Button>
         </DialogActions>
