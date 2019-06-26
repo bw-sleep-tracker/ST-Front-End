@@ -9,6 +9,8 @@ import {
   Button
 } from "@material-ui/core";
 
+import { sleepCalc } from "../../../util/sleepCalc";
+
 const styles = theme => ({
   root: {
     width: "100%",
@@ -61,7 +63,7 @@ class YearlyTable extends Component {
               <TableCell align="center" style={{ fontSize: "2rem" }}>
                 {this.getEmoji(item.day_emotion)}
               </TableCell>
-              <TableCell align="center">N/A</TableCell>
+              <TableCell align="center">{sleepCalc(item.start_sleep_time, item.end_sleep_time)}</TableCell>
               <TableCell align="center">
                 <Button variant="outlined" style={{ margin: 5 }}>
                   <i class="far fa-edit" />
