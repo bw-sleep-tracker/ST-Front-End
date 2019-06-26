@@ -96,10 +96,10 @@ export const postSleepObject = data => dispatch => {
     );
 };
 
-export const deleteSleepObject = (id, date) => dispatch => {
+export const deleteSleepObject = (id, month, day, year) => dispatch => {
   axios
     .delete(
-      `https://be-bw-sleep-tracker.herokuapp.com/tracker/${id}/date/:date`
+      `https://be-bw-sleep-tracker.herokuapp.com/tracker/${id}/date/${month}%2F${day}%2F${year}/year/${year}`
     )
     .then(res => {
       console.log(res);
