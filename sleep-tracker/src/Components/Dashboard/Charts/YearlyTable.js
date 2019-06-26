@@ -74,9 +74,23 @@ class YearlyTable extends Component {
               <TableCell align="center" style={{ fontSize: "2rem" }}>
                 {this.getEmoji(item.day_emotion)}
               </TableCell>
-              <TableCell align="center">{sleepCalc(item.start_sleep_time, item.end_sleep_time)}</TableCell>
               <TableCell align="center">
-                <Button variant="outlined" style={{ margin: 5 }}>
+                {sleepCalc(item.start_sleep_time, item.end_sleep_time)}
+              </TableCell>
+              <TableCell align="center">
+                <Button
+                  variant="outlined"
+                  style={{ margin: 5 }}
+                  onClick={() =>
+                    this.props.editSleep({
+                      date: item.date,
+                      startTime: item.start_sleep_time,
+                      endTime: item.end_sleep_time,
+                      morning: item.sleep_emotion,
+                      day: item.day_emotion
+                    })
+                  }
+                >
                   <i className="far fa-edit" />
                 </Button>
                 <Button

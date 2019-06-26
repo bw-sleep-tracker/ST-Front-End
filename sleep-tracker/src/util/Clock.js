@@ -11,6 +11,8 @@ const Clock = props => {
     props.onSuccess(moment(selectedDate).format("HH:mm"));
   }, [selectedDate]);
 
+  console.log(selectedDate);
+
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <TimePicker
