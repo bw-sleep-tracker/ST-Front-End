@@ -10,12 +10,17 @@ import {
   Button
 } from "@material-ui/core";
 
+import Recommendation from "../../util/Recommendation";
+
 const styles = theme => ({});
 
 const Recommendations = props => {
   return (
     <Dialog open={props.status} onClose={props.toggle}>
       <DialogTitle>Recommendations</DialogTitle>
+      <DialogContentText>
+        <Recommendation />
+      </DialogContentText>
     </Dialog>
   );
 };
