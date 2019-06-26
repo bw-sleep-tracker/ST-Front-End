@@ -131,6 +131,20 @@ class SleepInputForm extends Component {
   render() {
     const { classes } = this.props;
 
+    let formattedDate;
+    let morningNum;
+    let dayNum;
+
+    if (this.props.activeData) {
+      let dateArray = this.props.activeData.date.split("/");
+      formattedDate = `${dateArray[2]}-${dateArray[0]}-${dateArray[1]}`;
+      morningNum = this.props.activeData.morning;
+      dayNum = this.props.activeData.day;
+    } else {
+      morningNum = this.state.morning;
+      dayNum = this.state.day;
+    }
+
     return (
       <Dialog open={this.props.status} onClose={this.props.toggle}>
         <DialogTitle>Submit Sleep</DialogTitle>
@@ -140,7 +154,7 @@ class SleepInputForm extends Component {
           </DialogContentText>
           <form className={classes.form}>
             <TextField
-              value={this.state.date}
+              defaultValue={formattedDate ? formattedDate : this.state.date}
               id="date"
               label="Date"
               type="date"
@@ -168,7 +182,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Morning")}
-                variant={this.state.morning === 1 ? "contained" : "text"}
+                variant={morningNum === 1 ? "contained" : "text"}
               >
                 😴
               </Button>
@@ -176,7 +190,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Morning")}
-                variant={this.state.morning === 2 ? "contained" : "text"}
+                variant={morningNum === 2 ? "contained" : "text"}
               >
                 😐
               </Button>
@@ -184,7 +198,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Morning")}
-                variant={this.state.morning === 3 ? "contained" : "text"}
+                variant={morningNum === 3 ? "contained" : "text"}
               >
                 😌
               </Button>
@@ -192,7 +206,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Morning")}
-                variant={this.state.morning === 4 ? "contained" : "text"}
+                variant={morningNum === 4 ? "contained" : "text"}
               >
                 😀
               </Button>
@@ -203,7 +217,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Daytime")}
-                variant={this.state.day === 1 ? "contained" : "text"}
+                variant={dayNum === 1 ? "contained" : "text"}
               >
                 😴
               </Button>
@@ -211,7 +225,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Daytime")}
-                variant={this.state.day === 2 ? "contained" : "text"}
+                variant={dayNum === 2 ? "contained" : "text"}
               >
                 😐
               </Button>
@@ -219,7 +233,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Daytime")}
-                variant={this.state.day === 3 ? "contained" : "text"}
+                variant={dayNum === 3 ? "contained" : "text"}
               >
                 😌
               </Button>
@@ -227,7 +241,7 @@ class SleepInputForm extends Component {
                 size="small"
                 className={classes.emoji}
                 onClick={e => this.emojiToggle(e, "Daytime")}
-                variant={this.state.day === 4 ? "contained" : "text"}
+                variant={dayNum === 4 ? "contained" : "text"}
               >
                 😀
               </Button>

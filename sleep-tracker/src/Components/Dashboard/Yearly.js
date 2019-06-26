@@ -12,7 +12,12 @@ class Yearly extends Component {
   }
 
   render() {
-    return <YearlyTable data={this.props.yearlyData} />;
+    return (
+      <YearlyTable
+        data={this.props.yearlyData}
+        editSleep={this.props.editSleep}
+      />
+    );
   }
 }
 

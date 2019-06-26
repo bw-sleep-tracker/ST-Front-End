@@ -26,7 +26,8 @@ const styles = theme => ({
 class DashboardContainer extends Component {
   state = {
     tabValue: 0,
-    sleepInputStatus: false
+    sleepInputStatus: false,
+    activeData: null
   };
 
   changeTab = (event, newValue) => {
@@ -37,9 +38,19 @@ class DashboardContainer extends Component {
     this.setState({ sleepInputStatus: !this.state.sleepInputStatus });
   };
 
+  editSleep = data => {
+    this.setState(() => {
+      return {
+        activeData: data,
+        sleepInputStatus: !this.state.sleepInputStatus
+      };
+    });
+  };
+
   render() {
     const { classes } = this.props;
     const { tabValue } = this.state;
+    console.log(this.state);
 
     let content;
 
@@ -50,7 +61,7 @@ class DashboardContainer extends Component {
     } else if (this.state.tabValue === 2) {
       content = <Monthly />;
     } else if (this.state.tabValue === 3) {
-      content = <Yearly />;
+      content = <Yearly editSleep={this.editSleep} />;
     }
 
     return (
@@ -84,6 +95,7 @@ class DashboardContainer extends Component {
         <SleepInputForm
           status={this.state.sleepInputStatus}
           toggle={this.sleepInputToggle}
+          activeData={this.state.activeData}
         />
       </div>
     );
