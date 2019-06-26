@@ -302,9 +302,9 @@ class SleepInputForm extends Component {
             color="primary"
             fullWidth
             variant="contained"
-            onClick={this.updateForm}
+            onClick={this.props.activeData ? this.updateForm : this.submitForm}
           >
-            SUBMIT
+            {this.props.activeData ? "Update" : "Submit"}
           </Button>
         </DialogActions>
       </Dialog>

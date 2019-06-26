@@ -18,6 +18,8 @@ class Monthly extends Component {
 
     console.log(this.props.monthlyData);
 
+    for (let i = 0; i < this.props.monthlyData; i++) {}
+
     graphData = this.props.monthlyData.map(item => {
       return parseInt(sleepCalc(item.start_sleep_time, item.end_sleep_time));
     });

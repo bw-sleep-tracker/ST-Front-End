@@ -18,9 +18,11 @@ const Recommendations = props => {
   return (
     <Dialog open={props.status} onClose={props.toggle}>
       <DialogTitle>Recommendations</DialogTitle>
-      <DialogContentText>
-        <Recommendation />
-      </DialogContentText>
+      <DialogContent>
+        <DialogContentText>
+          <Recommendation />
+        </DialogContentText>
+      </DialogContent>
     </Dialog>
   );
 };
