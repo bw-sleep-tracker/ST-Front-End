@@ -18,8 +18,7 @@ class MonthlyChart extends Component {
   state = {
     chartData: {
       label: "Day Of Month",
-      // labels: daysInMonth(6, 2019),
-      labels: [1, 2, 3, 4, 5, 6, 7, 9, 102],
+      labels: daysInMonth(6, 2019),
       datasets: [
         {
           label: "Hours Slept",
