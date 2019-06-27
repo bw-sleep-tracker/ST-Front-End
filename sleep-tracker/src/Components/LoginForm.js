@@ -100,7 +100,9 @@ class LoginForm extends Component {
           >
             Don't have a username? <br />{" "}
             {/* <a href="#" style={{ color: "white" }}> */}
-            <Link to="/create">Create an account here.</Link>{" "}
+            <Link to="/create" style={{ color: "white" }}>
+              Create an account here.
+            </Link>{" "}
             {/* needs to be restyled */}
             {/* </a> */}
           </Typography>

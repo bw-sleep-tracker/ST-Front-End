@@ -141,7 +141,9 @@ class CreateUserForm extends Component {
           >
             Already have a username? <br />{" "}
             {/* <a href="#" style={{ color: "white" }}> */}
-            <Link to="/">Login Here.</Link>
+            <Link to="/" style={{ color: "white" }}>
+              Login Here.
+            </Link>
             {/* Links need to be restyled */}
             {/* </a> */}
           </Typography>
