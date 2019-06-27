@@ -90,8 +90,9 @@ class SleepInputForm extends Component {
       object.start_sleep_time = activeData.startTime;
     if (this.state.endTime === "") object.end_sleep_time = activeData.endTime;
     if (this.state.day === 5) object.day_emotion = activeData.day;
-    if (this.state.morning === 5) object.day_morning = activeData.morning;
+    if (this.state.morning === 5) object.sleep_emotion = activeData.morning;
 
+    console.log(object);
     this.props.updateSleepObject(object);
     this.setState({ date: "", startTime: "", endTime: "", morning: 5, day: 5 });
     this.props.close();

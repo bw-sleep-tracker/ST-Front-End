@@ -18,11 +18,11 @@ class MonthlyChart extends Component {
   state = {
     chartData: {
       label: "Day Of Month",
-      labels: daysInMonth(6, 2019),
+      labels: this.props.days,
       datasets: [
         {
           label: "Hours Slept",
-          data: this.props.data,
+          data: this.props.hours,
           backgroundColor: "rgba(33, 150, 243, 0.25)",
           borderColor: blue[500],
           lineTension: 0.2
@@ -42,8 +42,9 @@ class MonthlyChart extends Component {
           maintainAspectRatio: false,
           title: {
             display: true,
-            text: "Hours Slept Per Date",
-            fontSize: this.props.width === "xs" ? 12 : 18
+            text: "Hours Slept This Month",
+            fontSize: this.props.width === "xs" ? 12 : 18,
+            fontColor: "#E6E6E6"
           },
           legend: { display: false },
           scales: {

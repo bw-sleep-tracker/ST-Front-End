@@ -79,8 +79,8 @@ class DashboardContainer extends Component {
           <Tabs
             value={tabValue}
             onChange={this.changeTab}
-            indicatorColor="primary"
-            textColor="primary"
+            // indicatorColor="secondary"
+            // textColor="secondary"
             centered
           >
             <Tab label="Daily" />
@@ -91,7 +91,7 @@ class DashboardContainer extends Component {
         </Paper>
         <Toolbar className={classes.root}>
           <Fab
-            color="secondary"
+            color="primary"
             aria-label="Add"
             size="small"
             className={classes.fab}
@@ -100,7 +100,7 @@ class DashboardContainer extends Component {
             <AddIcon />
           </Fab>
           <Fab
-            color="secondary"
+            color="primary"
             aria-label="Add"
             size="small"
             variant="extended"
@@ -110,7 +110,9 @@ class DashboardContainer extends Component {
             Recommendations
           </Fab>
         </Toolbar>
-        <Paper style={{ width: "90%", margin: "auto" }}>{content}</Paper>
+        <Paper style={{ width: "90%", margin: "auto", padding: 25 }}>
+          {content}
+        </Paper>
         <SleepInputForm
           status={this.state.sleepInputStatus}
           close={this.sleepInputClose}

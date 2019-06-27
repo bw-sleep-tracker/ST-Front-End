@@ -4,10 +4,13 @@ import setAuthToken from "../../util/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { axiosWithAuth } from "../../util/axiosWithAuth";
 
+const link = "https://bw-sleep-tracker-app.herokuapp.com";
+// const link = "https://be-bw-sleep-tracker.herokuapp.com"
+
 // Register User
 export const registerUser = (userData, redirect) => dispatch => {
   axios
-    .post("https://be-bw-sleep-tracker.herokuapp.com/register", userData)
+    .post(`${link}/register`, userData)
     .then(res => redirect.push("/"))
     .catch(err =>
       dispatch({
@@ -20,7 +23,7 @@ export const registerUser = (userData, redirect) => dispatch => {
 // Login - Get User Token
 export const login = (userData, redirect) => dispatch => {
   axios
-    .post("https://be-bw-sleep-tracker.herokuapp.com/login", userData)
+    .post(`${link}/login`, userData)
     .then(res => {
       console.log(res.data);
       // Save to local storage
