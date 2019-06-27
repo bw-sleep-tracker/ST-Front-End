@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { sleepCalc } from "./sleepCalc";
-import { getYearlyData } from "../store/actions/profileActions";
+import { getYearlyAll } from "../store/actions/profileActions";
 
 class Recommendation extends Component {
   componentDidMount() {
-    this.props.getYearlyData(this.props.id);
+    this.props.getYearlyAll(this.props.id);
   }
 
   maxMood = moodArray => Math.max(...moodArray);
@@ -52,8 +52,13 @@ class Recommendation extends Component {
       );
     return (
       <div>
-        Your mood score tends to be highest when you sleep{" "}
-        {this.calcMode(optimalSleep)} hours.
+        {this.calcMode(optimalSleep).length === 1
+          ? `Your mood score tends to be highest when you sleep ${this.calcMode(
+              optimalSleep
+            )} hours`
+          : `Your mood score tends to be highest when you sleep either ${
+              this.calcMode(optimalSleep)[0]
+            } or ${this.calcMode(optimalSleep)[1]} hours.`}
       </div>
     );
   }
@@ -68,5 +73,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getYearlyData }
+  { getYearlyAll }
 )(Recommendation);

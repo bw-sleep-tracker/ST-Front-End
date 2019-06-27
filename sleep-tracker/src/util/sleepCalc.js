@@ -31,3 +31,30 @@ export const sleepCalc = (start, end) => {
 // console.log(sleepCalc("22:00", "06:00")); // 10:00
 
 //moment(selectedDate).format("HH:mm")
+const calcMode = numArray => {
+  // results can be multimodal
+  let modes = [],
+    count = [],
+    i,
+    number,
+    maxIndex = 0;
+
+  for (i = 0; i < numArray.length; i += 1) {
+    number = numArray[i];
+    count[number] = (count[number] || 0) + 1;
+    if (count[number] > maxIndex) {
+      maxIndex = count[number];
+    }
+  }
+
+  for (i in count)
+    if (count.hasOwnProperty(i)) {
+      if (count[i] === maxIndex) {
+        modes.push(Number(i));
+      }
+    }
+
+  return modes;
+};
+
+console.log(calcMode([1,1,2,2]))
