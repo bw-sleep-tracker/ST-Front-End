@@ -55,7 +55,7 @@ class Recommendation extends Component {
         {this.calcMode(optimalSleep).length === 1
           ? `Your mood score tends to be highest when you sleep ${this.calcMode(
               optimalSleep
-            )} hours`
+            )} hours.`
           : `Your mood score tends to be highest when you sleep either ${
               this.calcMode(optimalSleep)[0]
             } or ${this.calcMode(optimalSleep)[1]} hours.`}
