@@ -6,7 +6,7 @@ import { blue, deepPurple } from "@material-ui/core/colors";
 class DailyChart extends Component {
   state = {
     chartData: {
-      labels: ["Time Awake", "Time Asleep"],
+      labels: ["Time Asleep", "Time Awake"],
 
       datasets: [
         {
@@ -30,7 +30,8 @@ class DailyChart extends Component {
           title: {
             display: true,
             text: `Awake Time vs Sleep Time For ${data.date}`,
-            fontSize: width === "xs" ? 12 : 18
+            fontSize: width === "xs" ? 12 : 18,
+            fontColor: "#E6E6E6"
           }
         }}
       />

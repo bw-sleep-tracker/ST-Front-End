@@ -17,7 +17,7 @@ const App = () => {
       style={{
         minHeight: "100vh",
         height: "100%",
-        backgroundColor: "darkGrey",
+        backgroundColor: "#262626",
         paddingBottom: 100
       }}
     >

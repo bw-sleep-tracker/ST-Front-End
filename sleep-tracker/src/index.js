@@ -15,7 +15,7 @@ import App from "./App";
 import rootReducer from "./store/reducers";
 
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
-import { indigo, blue } from "@material-ui/core/colors";
+import { indigo, blue, deepPurple } from "@material-ui/core/colors";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -50,10 +50,10 @@ if (localStorage.jwtToken) {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: indigo[200]
+      main: "#00006D"
     },
     secondary: {
-      main: blue[700]
+      main: indigo[300]
     },
     type: "dark"
   }

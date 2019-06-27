@@ -14,20 +14,32 @@ class Monthly extends Component {
   }
 
   render() {
-    let graphData = [];
-
-    console.log(this.props.monthlyData);
-
-    for (let i = 0; i < this.props.monthlyData; i++) {}
-
-    graphData = this.props.monthlyData.map(item => {
-      return parseInt(sleepCalc(item.start_sleep_time, item.end_sleep_time));
-    });
-
+    let days;
+    let hours;
     let content;
+    let sum;
 
-    if (graphData.length > 0) {
-      content = <MonthlyChart data={graphData} />;
+    if (this.props.monthlyData.length > 0) {
+      days = this.props.monthlyData.map(item => item.day);
+
+      hours = this.props.monthlyData.map(item => {
+        sum = sleepCalc(item.start_sleep_time, item.end_sleep_time);
+        sum = sum.split(":");
+
+        if (sum[1] < 15) {
+          sum = parseInt(sum[0]);
+        } else if (sum[1] >= 15 && sum[1] <= 45) {
+          sum = parseInt(sum[0]) + 0.5;
+        } else if (sum[1] > 45) {
+          sum = parseInt(sum[0]) + 1;
+        }
+        return sum;
+      });
+
+      days = days.reverse();
+      hours = hours.reverse();
+
+      content = content = <MonthlyChart hours={hours} days={days} />;
     }
 
     return <div style={{ width: "90%", margin: "auto" }}>{content}</div>;

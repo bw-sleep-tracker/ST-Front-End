@@ -7,13 +7,14 @@ import { green } from "@material-ui/core/colors";
 class WeeklyChart extends Component {
   state = {
     chartData: {
-      labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
+      labels: this.props.days,
       datasets: [
         {
           label: "Hours Slept",
-          data: [7, 5, 9, 6, 6, 5, 8],
-          borderColor: green[700],
-          fill: false
+          data: this.props.hours,
+          backgroundColor: "rgba(56, 142, 60, 0.1)",
+          borderColor: green[600],
+          lineTension: 0.2
         }
       ]
     }
@@ -29,8 +30,9 @@ class WeeklyChart extends Component {
           maintainAspectRatio: false,
           title: {
             display: true,
-            text: "Hours Slept Per Day",
-            fontSize: this.props.width === "xs" ? 12 : 18
+            text: "Hours Slept This Week",
+            fontSize: this.props.width === "xs" ? 12 : 18,
+            fontColor: "#E6E6E6"
           },
 
           legend: { display: false },

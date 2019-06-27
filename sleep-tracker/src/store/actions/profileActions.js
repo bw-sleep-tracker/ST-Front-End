@@ -13,11 +13,12 @@ import {
 } from "./types";
 import { axiosWithAuth } from "../../util/axiosWithAuth";
 
+const link = "https://bw-sleep-tracker-app.herokuapp.com";
+// const link = "https://be-bw-sleep-tracker.herokuapp.com"
+
 export const getDailyData = id => dispatch => {
   axios
-    .get(
-      `https://be-bw-sleep-tracker.herokuapp.com/tracker/${id}/limit/1/order/desc`
-    )
+    .get(`${link}/tracker/${id}/limit/1/order/desc`)
     .then(res =>
       dispatch({
         type: GET_DAILY_DATA,
@@ -34,9 +35,7 @@ export const getDailyData = id => dispatch => {
 
 export const getWeeklyData = id => dispatch => {
   axios
-    .get(
-      `https://be-bw-sleep-tracker.herokuapp.com/tracker/${id}/limit/7/order/desc`
-    )
+    .get(`${link}/tracker/${id}/limit/7/order/desc`)
     .then(res =>
       dispatch({
         type: GET_WEEKLY_DATA,
@@ -53,7 +52,7 @@ export const getWeeklyData = id => dispatch => {
 
 export const getMonthlyData = id => dispatch => {
   axios
-    .get(`https://be-bw-sleep-tracker.herokuapp.com/tracker/${id}/month/6`)
+    .get(`${link}/tracker/${id}/month/6`)
     .then(res =>
       dispatch({
         type: GET_MONTHLY_DATA,
@@ -70,7 +69,7 @@ export const getMonthlyData = id => dispatch => {
 
 export const getYearlyData = id => dispatch => {
   axios
-    .get(`https://be-bw-sleep-tracker.herokuapp.com/tracker/${id}/year/2019`)
+    .get(`${link}/tracker/${id}/year/2019`)
     .then(res => {
       console.log(res);
       dispatch({
@@ -88,7 +87,7 @@ export const getYearlyData = id => dispatch => {
 
 export const getYearlyAll = id => dispatch => {
   axios
-    .get(`https://be-bw-sleep-tracker.herokuapp.com/tracker/${id}/yearall/2019`)
+    .get(`${link}/tracker/${id}/yearall/2019`)
     .then(res => {
       console.log(res);
       dispatch({
@@ -106,7 +105,7 @@ export const getYearlyAll = id => dispatch => {
 
 export const postSleepObject = data => dispatch => {
   axios
-    .post("https://be-bw-sleep-tracker.herokuapp.com/tracker", data)
+    .post(`${link}/tracker`, data)
     .then(res =>
       dispatch({
         type: POST_SLEEP_OBJECT,
@@ -125,7 +124,7 @@ export const postSleepObject = data => dispatch => {
 export const deleteSleepObject = (id, month, day, year) => dispatch => {
   axios
     .delete(
-      `https://be-bw-sleep-tracker.herokuapp.com/tracker/${id}/date/${month}%2F${day}%2F${year}/year/${year}`
+      `${link}/tracker/${id}/date/${month}%2F${day}%2F${year}/year/${year}`
     )
     .then(res => {
       console.log(res);
@@ -144,7 +143,7 @@ export const deleteSleepObject = (id, month, day, year) => dispatch => {
 
 export const updateSleepObject = data => dispatch => {
   axios
-    .put("https://be-bw-sleep-tracker.herokuapp.com/tracker/", data)
+    .put(`${link}/tracker/`, data)
     .then(res => {
       console.log(res);
       dispatch({
