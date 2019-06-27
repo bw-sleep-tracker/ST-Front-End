@@ -116,14 +116,12 @@ class SleepInputForm extends Component {
   // };
 
   handleClockSuccess = date => {
-    console.log("date:", date);
     this.setState({
       startTime: date
     });
   };
 
   handleClockSuccess_end = date => {
-    console.log("date:", date);
     this.setState({
       endTime: date
     });

@@ -10,7 +10,7 @@ class DailyChart extends Component {
 
       datasets: [
         {
-          data: [16, 8],
+          data: [this.props.sum, this.props.difference],
           backgroundColor: [deepPurple[100], blue[200]]
         }
       ]
@@ -19,8 +19,6 @@ class DailyChart extends Component {
 
   render() {
     const { width, data } = this.props;
-
-    console.log(data);
 
     return (
       <Pie

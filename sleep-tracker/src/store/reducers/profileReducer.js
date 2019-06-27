@@ -3,6 +3,7 @@ import {
   GET_WEEKLY_DATA,
   GET_MONTHLY_DATA,
   GET_YEARLY_DATA,
+  GET_YEARLY_ALL,
   POST_SLEEP_OBJECT,
   DELETE_SLEEP_OBJECT,
   UPDATE_SLEEP_OBJECT
@@ -18,7 +19,8 @@ const initialState = {
   dailyData: [],
   weeklyData: [],
   monthlyData: [],
-  yearlyData: []
+  yearlyData: [],
+  recommendationData: []
 };
 
 export default function(state = initialState, action) {
@@ -39,6 +41,11 @@ export default function(state = initialState, action) {
         monthlyData: action.payload
       };
     case GET_YEARLY_DATA:
+      return {
+        ...state,
+        recommendationData: action.payload
+      };
+    case GET_YEARLY_ALL:
       return {
         ...state,
         yearlyData: action.payload

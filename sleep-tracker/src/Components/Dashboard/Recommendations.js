@@ -18,10 +18,8 @@ const Recommendations = props => {
   return (
     <Dialog open={props.status} onClose={props.toggle}>
       <DialogTitle>Recommendations</DialogTitle>
-      <DialogContent>
-        <DialogContentText>
-          <Recommendation />
-        </DialogContentText>
+      <DialogContent style={{ paddingBottom: 25 }}>
+        <Recommendation />
       </DialogContent>
     </Dialog>
   );

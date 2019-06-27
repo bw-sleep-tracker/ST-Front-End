@@ -8,6 +8,7 @@ import {
   POST_SLEEP_OBJECT,
   UPDATE_SLEEP_OBJECT,
   DELETE_SLEEP_OBJECT,
+  GET_YEARLY_ALL,
   GET_ERRORS
 } from "./types";
 import { axiosWithAuth } from "../../util/axiosWithAuth";
@@ -85,20 +86,39 @@ export const getYearlyData = id => dispatch => {
     );
 };
 
-export const postSleepObject = data => dispatch => {
+export const getYearlyAll = id => dispatch => {
   axios
-    .post("https://be-bw-sleep-tracker.herokuapp.com/tracker", data)
-    // .then(res =>
-    //   dispatch({
-    //     type: GET_YEARLY_DATA,
-    //     payload: res.data
-    //   })
-    // )
+    .get(`https://be-bw-sleep-tracker.herokuapp.com/tracker/${id}/yearall/2019`)
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: GET_YEARLY_ALL,
+        payload: res.data
+      });
+    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
       })
+    );
+};
+
+export const postSleepObject = data => dispatch => {
+  axios
+    .post("https://be-bw-sleep-tracker.herokuapp.com/tracker", data)
+    .then(res =>
+      dispatch({
+        type: POST_SLEEP_OBJECT,
+        payload: res.data
+      })
+    )
+    .catch(
+      err => console.log(err)
+      // dispatch({
+      //   type: GET_ERRORS,
+      //   payload: err.response.data
+      // })
     );
 };
 

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getYearlyData } from "../../store/actions/profileActions";
+import { getYearlyAll } from "../../store/actions/profileActions";
 
 import YearlyTable from "./Charts/YearlyTable";
 
 class Yearly extends Component {
   componentDidMount() {
     if (this.props.isAuthenticated) {
-      this.props.getYearlyData(this.props.id);
+      this.props.getYearlyAll(this.props.id);
     }
   }
 
@@ -32,5 +32,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getYearlyData }
+  { getYearlyAll }
 )(Yearly);
