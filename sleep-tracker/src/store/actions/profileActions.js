@@ -88,6 +88,12 @@ export const getYearlyData = id => dispatch => {
 export const postSleepObject = data => dispatch => {
   axios
     .post("https://be-bw-sleep-tracker.herokuapp.com/tracker", data)
+    // .then(res =>
+    //   dispatch({
+    //     type: GET_YEARLY_DATA,
+    //     payload: res.data
+    //   })
+    // )
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

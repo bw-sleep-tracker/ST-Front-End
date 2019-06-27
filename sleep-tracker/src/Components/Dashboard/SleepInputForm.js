@@ -97,6 +97,11 @@ class SleepInputForm extends Component {
     this.props.close();
   };
 
+  closeModal = () => {
+    this.props.close();
+    this.setState({ date: "", startTime: "", endTime: "", morning: 5, day: 5 });
+  };
+
   getDate = e => {
     this.setState({ date: e.target.value });
   };
@@ -195,7 +200,7 @@ class SleepInputForm extends Component {
     }
 
     return (
-      <Dialog open={this.props.status} onClose={this.props.close}>
+      <Dialog open={this.props.status} onClose={this.closeModal}>
         <DialogTitle>Submit Sleep</DialogTitle>
         <DialogContent style={{ maxWidth: 500 }}>
           <DialogContentText>
