@@ -1,8 +1,8 @@
 [build]
  command = "yarn build"
  functions = "functions"
- publish = "todo/build"
- base = "todo"
+ publish = "sleep-tracker/build"
+ base = "sleep-tracker"
 
 
  [[redirects]]
