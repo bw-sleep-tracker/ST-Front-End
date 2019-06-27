@@ -61,8 +61,6 @@ class DashboardContainer extends Component {
     const { classes } = this.props;
     const { tabValue } = this.state;
 
-    console.log(this.state.activeData);
-
     let content;
 
     if (this.state.tabValue === 0) {

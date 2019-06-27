@@ -52,8 +52,8 @@ class Recommendation extends Component {
       );
     return (
       <div>
-          Your mood score tends to be highest when you sleep{" "}
-          {this.calcMode(optimalSleep)} hours.
+        Your mood score tends to be highest when you sleep{" "}
+        {this.calcMode(optimalSleep)} hours.
       </div>
     );
   }
