@@ -50,10 +50,10 @@ if (localStorage.jwtToken) {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: indigo[300]
+      main: indigo[200]
     },
     secondary: {
-      main: indigo[300]
+      main: indigo[200]
     },
     type: "dark"
   }
